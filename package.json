@@ -1,7 +1,7 @@
 {
-  "name": "mini-blog",
+  "name": "gdu",
   "version": "1.0.0",
-  "description": "Node.js API for mini blog",
+  "description": "Node.js API for gdu",
   "main": "index.js",
   "type": "module",
   "scripts": {

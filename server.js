@@ -14,7 +14,7 @@ app.use(morgan("tiny"));
 app.disable("x-powered-by");
 const port = process.env.PORT || 8080;
 app.get("/", (req, res) => {
-  res.status(201).json("Home GET Request");
+  res.status(201).json("Navigate to /docs for swagger API documentation");
 });
 
 /** api routes */
