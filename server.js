@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connect from "./database/conn.js";
 import userRouter from "./router/user.js";
 import swaggerDocs from "./swagger.js";
+import gameRouter from "./router/game.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 /** api routes */
 app.use("/api/user", userRouter);
 
+app.use("/api/game", gameRouter);
 
 connect()
   .then(() => {

@@ -31,11 +31,11 @@ const userSchema = new mongoose.Schema({
     occupation: String,
     intro: String,
     qualification: String,
-    achievements: {
+    achievements: [{
       image: String,
       title: String,
       description: String
-    },
+    }],
     social_media: {
       linkedin: String,
       instagram: String,
