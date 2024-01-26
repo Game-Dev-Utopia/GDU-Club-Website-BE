@@ -4,95 +4,91 @@ import jwt from "jsonwebtoken";
 
 export async function register(req, res) {
   try {
-    const { username, password, firstName, lastName, email } = req.body;
-    const existUsername = new Promise((resolve, reject) => {
-      UserModel.findOne({ username }, function (err, user) {
-        if (err) reject(new Error(err));
-        if (user) reject({ error: "Please use unique username" });
+    const { username, password, firstName, lastName, email, profile } = req.body;
+    const existUsername = UserModel.findOne({ username });
+    const existEmail = UserModel.findOne({ email });
 
-        resolve();
-      });
-    });
-    const existEmail = new Promise((resolve, reject) => {
-      UserModel.findOne({ email }, function (err, email) {
-        if (err) reject(new Error(err));
-        if (email) reject({ error: "Please use unique Email" });
+    const [existingUsername, existingEmail] = await Promise.all([existUsername, existEmail]);
 
-        resolve();
-      });
+    if (existingUsername) {
+      return res.status(400).json({ error: "Please use a unique username" });
+    }
+
+    if (existingEmail) {
+      return res.status(400).json({ error: "Please use a unique email" });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new UserModel({
+      username,
+      password: hashedPassword,
+      email,
+      firstName,
+      lastName,
+      profile: {
+        profile_photo: profile?.profile_photo || "",
+        background_img: profile?.background_img || "",
+        aka_name: profile?.aka_name || "",
+        occupation: profile?.occupation || "",
+        intro: profile?.intro || "",
+        qualification: profile?.qualification || "",
+        achievements: {
+          image: profile.achievements.image || "",
+          title: profile.achievements.title || "",
+          description: profile.achievements.description || "",
+        },
+        social_media: {
+          linkedin: profile?.social_media?.linkedin || "",
+          instagram: profile?.social_media?.instagram || "",
+        },
+      },
     });
-    Promise.all([existUsername, existEmail])
-      .then(() => {
-        if (password) {
-          bcrypt
-            .hash(password, 10)
-            .then((hashedPassword) => {
-              const user = new UserModel({
-                username,
-                password: hashedPassword,
-                firstName,
-                lastName,
-                email,
-              });
-              user
-                .save()
-                .then((result) =>
-                  res
-                    .status(201)
-                    .send({
-                      msg: `User Register Successfully, userId is ${user._id}`,
-                    })
-                )
-                .catch((error) => res.status(500).send({ error }));
-            })
-            .catch((error) => {
-              return res.status(500).send({
-                error: "Enable to hashed password",
-              });
-            });
-        }
-      })
-      .catch((error) => {
-        return res.status(500).send({ error });
-      });
+    const savedUser = await user.save();
+
+    res.status(201).json({ msg: `User registered successfully, userId is ${savedUser._id}` });
   } catch (error) {
-    return res.status(500).send(error);
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 export async function login(req, res) {
-  const { username, password } = req.body;
   try {
-    UserModel.findOne({ username })
-      .then((user) => {
-        bcrypt
-          .compare(password, user.password)
-          .then((passwordCheck) => {
-            if (!passwordCheck)
-              return res.status(400).send({ error: "Don't have Password" });
-            const token = jwt.sign(
-              {
-                userId: user._id,
-                username: user.username,
-              },
-              process.env.JWT_SECRET,
-              { expiresIn: "24h" }
-            );
+    const { usernameOrEmail, password } = req.body;
 
-            return res.status(200).send({
-              msg: "Login Successful...!",
-              username: user.username,
-              token,
-            });
-          })
-          .catch((error) => {
-            return res.status(400).send({ error: "Password does not Match" });
-          });
-      })
-      .catch((error) => {
-        return res.status(404).send({ error: "Username not Found" });
-      });
+    // Check if the usernameOrEmail exists in the database
+    const user = await UserModel.findOne({
+      $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+    });
+
+    if (!user) {
+      return res.status(401).json({ error: "Invalid username or email" });
+    }
+
+    // Compare the entered password with the hashed password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        username: user.username,
+      },
+      process.env.JWT_SECRET, // Replace with your actual secret
+      { expiresIn: "24h" }
+    );
+
+    // Return success along with the token
+    res.status(200).json({
+      msg: "Login Successful",
+      username: user.username,
+      token,
+    });
   } catch (error) {
-    return res.status(500).send({ error });
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
@@ -130,6 +126,7 @@ export async function updateUser(req, res) {
     return res.status(401).send({ error });
   }
 }
+
 export async function deleteUser(req, res) {
   try {
     const { userId } = req.params;

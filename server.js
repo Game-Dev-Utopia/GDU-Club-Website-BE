@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 import connect from "./database/conn.js";
 import userRouter from "./router/user.js";
 import swaggerDocs from "./swagger.js";
-
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -17,8 +16,10 @@ app.get("/", (req, res) => {
   res.status(201).json("Navigate to /docs for swagger API documentation");
 });
 
+
 /** api routes */
 app.use("/api/user", userRouter);
+
 
 connect()
   .then(() => {
