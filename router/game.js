@@ -1,7 +1,7 @@
 import { Router } from "express";
 const gameRouter = Router();
-import Auth from "../middleware/auth.js"
-import * as controller from '../controllers/gameController.js';
+import Auth from "../middleware/auth.js";
+import * as controller from "../controllers/gameController.js";
 
 /** POST Methods */
 /**
@@ -84,8 +84,52 @@ import * as controller from '../controllers/gameController.js';
  *       500:
  *         description: Server Error
  */
-gameRouter.route('/addgame').post(controller.addGame);
+gameRouter.route("/addgame").post(controller.addGame);
 
+/** GET Methods */
+/**
+ * @openapi
+ * /api/game/getallgames:
+ *  get:
+ *     tags:
+ *     - Game Management
+ *     summary: Get All Games
+ *     responses:
+ *      200:
+ *        description: Fetched Successfully
+ *      400:
+ *        description: Bad Request
+ *      404:
+ *        description: Not Found
+ *      500:
+ *        description: Server Error
+ *
+ */
+gameRouter.route("/getallgames").get(controller.getAllGames);
 
+/** DELETE Methods */
+/**
+ * @openapi
+ * '/api/game/deletegame/{gameId}':
+ *  delete:
+ *     tags:
+ *     - Game Management
+ *     summary: Delete Game by Id
+ *     parameters:
+ *      - name: gameId
+ *        in: path
+ *        description: The unique Id of the game
+ *        required: true
+ *     responses:
+ *      200:
+ *        description: Removed
+ *      400:
+ *        description: Bad request
+ *      404:
+ *        description: Not Found
+ *      500:
+ *        description: Server Error
+ */
+gameRouter.route("/deletegame/:gameId").delete(controller.deleteGame);
 
 export default gameRouter;
