@@ -86,26 +86,45 @@ import * as controller from "../controllers/gameController.js";
  */
 gameRouter.route("/addgame").post(controller.addGame);
 
+
 /** GET Methods */
 /**
  * @openapi
  * /api/game/getallgames:
- *  get:
+ *   get:
  *     tags:
- *     - Game Management
+ *       - Game Management
  *     summary: Get All Games
+ *     securitySchemes:
+ *       BearerAuth:
+ *         type: http
+ *         scheme: bearer
+ *         bearerFormat: JWT
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         description: Bearer token for authentication
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: "Bearer {token}"
  *     responses:
- *      200:
- *        description: Fetched Successfully
- *      400:
- *        description: Bad Request
- *      404:
- *        description: Not Found
- *      500:
- *        description: Server Error
- *
+ *       200:
+ *         description: Fetched Successfully
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Not Found
+ *       500:
+ *         description: Server Error
  */
-gameRouter.route("/getallgames").get(controller.getAllGames);
+gameRouter.route("/getallgames").get(Auth, controller.getAllGames);
+
+
 
 /** DELETE Methods */
 /**
