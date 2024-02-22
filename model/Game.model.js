@@ -7,12 +7,14 @@ const gameSchema = new mongoose.Schema({
         trim: true,
         minlength: 2,
         maxlength: 100,
+        unique: [true, "Title Exist"],
       },
       description: {
         type: String,
         required: true,
         trim: true,
         minlength: 10,
+        unique: [true, "Description Exist"],
       },
       features: {
         type: String,
