@@ -24,8 +24,8 @@ app.get("/", (req, res) => {
 /** api routes */
 app.use("/api/user", userRouter);
 app.use("/api/game", gameRouter);
-app.use("/api/design", designRouter);
 app.use("/api/timeline", timelineRouter)
+app.use("/api/design", designRouter);
 
 connect()
   .then(() => {
