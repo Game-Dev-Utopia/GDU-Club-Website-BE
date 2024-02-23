@@ -15,7 +15,7 @@ const options = {
         description: "Local server",
       },
       {
-        url: "<your live url here>",
+        url: "https://gdu-club-website-be.onrender.com",
         description: "Live server",
       },
     ],
