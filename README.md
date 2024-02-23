@@ -1,7 +1,7 @@
 # GDU-Club-Website-BE (GameDevUtopia Club Backend)
 ### Live Website
 ```bash
-[https://gdu-club-website-be.onrender.com](https://gdu-club-website-be.onrender.com)
+https://gdu-club-website-be.onrender.com
 ```
 
 Welcome to the backend repository for the GameDevUtopia Club's official website. This backend supports all branches of the club, fostering innovation in Games, Designs, and providing assistance to aspiring talents across various domains.
