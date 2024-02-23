@@ -27,6 +27,9 @@ Create a .env file in the root of your project and add the following content:
 ```bash
 ATLAS_URI=<your MongoDB Atlas cluster URL>
 ```
+```bash
+JWT_SECRET="GDU_backend"
+```
 
 ### 3. Start the Server
 
