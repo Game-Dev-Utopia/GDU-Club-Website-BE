@@ -30,6 +30,9 @@ ATLAS_URI=<your MongoDB Atlas cluster URL>
 ```bash
 JWT_SECRET="GDU_backend"
 ```
+```bash
+PORT = "8080"
+```
 
 ### 3. Start the Server
 
