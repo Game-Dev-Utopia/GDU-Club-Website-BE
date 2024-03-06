@@ -8,6 +8,7 @@ import swaggerDocs from "./swagger.js";
 import gameRouter from "./router/game.js";
 import designRouter from "./router/design.js";
 import timelineRouter from "./router/timeline.js";
+import contactFormRouter from "./router/contactForm.js";
 
 dotenv.config();
 const app = express();
@@ -26,6 +27,7 @@ app.use("/api/user", userRouter);
 app.use("/api/game", gameRouter);
 app.use("/api/timeline", timelineRouter)
 app.use("/api/design", designRouter);
+app.use("/api/form", contactFormRouter);
 
 connect()
   .then(() => {
