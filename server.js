@@ -8,6 +8,7 @@ import swaggerDocs from "./swagger.js";
 import gameRouter from "./router/game.js";
 import designRouter from "./router/design.js";
 import timelineRouter from "./router/timeline.js";
+import contactFormRouter from "./router/contactForm.js";
 import headCouncilRouter from "./router/headCuncil.js";
 import branchRouter from "./router/branch.js";
 
@@ -29,10 +30,9 @@ app.use("/api/user", userRouter);
 app.use("/api/game", gameRouter);
 app.use("/api/timeline", timelineRouter);
 app.use("/api/design", designRouter);
-app.use("/api/design", designRouter);
+app.use("/api/form", contactFormRouter);
 app.use("/api/headcouncil", headCouncilRouter);
 app.use("/api/branches", branchRouter);
-
 
 connect()
   .then(() => {
