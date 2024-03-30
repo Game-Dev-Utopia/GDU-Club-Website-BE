@@ -23,6 +23,11 @@ import * as controller from "../controllers/gameController.js";
  *               - features
  *               - trailer_video
  *               - game_image
+ *               - category
+ *               - downloadable
+ *               - size
+ *               - dimension
+ *               - device
  *             properties:
  *               title:
  *                 type: string
@@ -77,6 +82,21 @@ import * as controller from "../controllers/gameController.js";
  *               developers_id:
  *                 type: string
  *                 default: developer123
+ *               category:
+ *                 type: string
+ *                 default: RPG
+ *               downloadable:
+ *                 type: boolean
+ *                 default: true
+ *               size:
+ *                 type: string
+ *                 default: Quick
+ *               dimension:
+ *                 type: string
+ *                 default: 2D
+ *               device:
+ *                 type: string
+ *                 default: Mobile
 
  *     responses:
  *       201:
@@ -94,22 +114,7 @@ gameRouter.route("/addgame").post(controller.addGame);
  *   get:
  *     tags:
  *       - Game Management
- *     summary: Get All Games
- *     securitySchemes:
- *       BearerAuth:
- *         type: http
- *         scheme: bearer
- *         bearerFormat: JWT
- *     security:
- *       - BearerAuth: []
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         description: Bearer token for authentication
- *         required: true
- *         schema:
- *           type: string
- *           format: "Bearer {token}"
+ *     summary: Get All Games 
  *     responses:
  *       200:
  *         description: Fetched Successfully
@@ -122,7 +127,7 @@ gameRouter.route("/addgame").post(controller.addGame);
  *       500:
  *         description: Server Error
  */
-gameRouter.route("/getallgames").get(Auth, controller.getAllGames);
+gameRouter.route("/getallgames").get(controller.getAllGames);
 
 
 
