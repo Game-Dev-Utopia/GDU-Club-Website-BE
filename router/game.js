@@ -95,21 +95,6 @@ gameRouter.route("/addgame").post(controller.addGame);
  *     tags:
  *       - Game Management
  *     summary: Get All Games
- *     securitySchemes:
- *       BearerAuth:
- *         type: http
- *         scheme: bearer
- *         bearerFormat: JWT
- *     security:
- *       - BearerAuth: []
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         description: Bearer token for authentication
- *         required: true
- *         schema:
- *           type: string
- *           format: "Bearer {token}"
  *     responses:
  *       200:
  *         description: Fetched Successfully
@@ -122,7 +107,7 @@ gameRouter.route("/addgame").post(controller.addGame);
  *       500:
  *         description: Server Error
  */
-gameRouter.route("/getallgames").get(Auth, controller.getAllGames);
+gameRouter.route("/getallgames").get(controller.getAllGames);
 
 
 
