@@ -11,6 +11,7 @@ import timelineRouter from "./router/timeline.js";
 import contactFormRouter from "./router/contactForm.js";
 import headCouncilRouter from "./router/headCuncil.js";
 import branchRouter from "./router/branch.js";
+import eventRouter from "./router/event.js";
 
 
 dotenv.config();
@@ -33,6 +34,7 @@ app.use("/api/design", designRouter);
 app.use("/api/form", contactFormRouter);
 app.use("/api/headcouncil", headCouncilRouter);
 app.use("/api/branches", branchRouter);
+app.use("/api/event",eventRouter)
 
 connect()
   .then(() => {

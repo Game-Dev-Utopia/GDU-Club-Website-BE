@@ -2,7 +2,7 @@ import { Router } from "express";
 const contactFormRouter = Router();
 
 import Auth from "../middleware/auth.js"
-import * as controller from "../controllers/contactFormController.js.js"
+import * as controller from "../controllers/contactFormController.js"
 
 /** POST Methods */
 /**
