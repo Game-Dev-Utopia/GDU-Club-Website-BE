@@ -15,6 +15,11 @@ export async function addGame(req, res) {
       play_url,
       tags,
       developers_id,
+      category,
+      downloadable,
+      size,
+      dimension,
+      device,
     } = req.body;
 
     const existGameTitle = GameModel.findOne({ title });
@@ -54,6 +59,11 @@ export async function addGame(req, res) {
       play_url,
       tags,
       developers_id,
+      category,
+      downloadable,
+      size,
+      dimension,
+      device,
     });
 
     const savedGame = await newGame.save();
