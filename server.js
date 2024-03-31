@@ -9,8 +9,13 @@ import gameRouter from "./router/game.js";
 import designRouter from "./router/design.js";
 import timelineRouter from "./router/timeline.js";
 import achievementRouter from "./router/achievement.js";
-// import aboutUsRouter from "./router/about-us.js";
+import aboutUsRouter from "./router/about-us.js";
 import sponserRouter from "./router/sponsers.js";
+import contactFormRouter from "./router/contactForm.js";
+import headCouncilRouter from "./router/headCuncil.js";
+import branchRouter from "./router/branch.js";
+
+
 
 dotenv.config();
 const app = express();
@@ -27,11 +32,15 @@ app.get("/", (req, res) => {
 /** api routes */
 app.use("/api/user", userRouter);
 app.use("/api/game", gameRouter);
-app.use("/api/timeline", timelineRouter)
+app.use("/api/timeline", timelineRouter);
 app.use("/api/design", designRouter);
+
 app.use("/api/achievement", achievementRouter);
-// app.use("/api/aboutus", aboutUsRouter);
+app.use("/api/aboutus", aboutUsRouter);
 app.use("/api/sponser", sponserRouter);
+app.use("/api/form", contactFormRouter);
+app.use("/api/headcouncil", headCouncilRouter);
+app.use("/api/branches", branchRouter);
 
 
 connect()

@@ -104,4 +104,7 @@ timelineRouter.route("/getalltimelines").get(controller.getAllTimeline);
 timelineRouter.route("/deletetimeline/:timelienId").delete(controller.deleteTimelineEvent);
 
 
+/** UPDATE Methods */
+
+
 export default timelineRouter;
