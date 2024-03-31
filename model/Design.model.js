@@ -28,7 +28,7 @@ const designSchema = new Schema({
             validator: (value) => {
                 return /^https?:\/\/.+$/.test(value);
             },
-            message: "Invalid URL format for game image",
+            message: "Invalid URL format for image",
         },
     },
     thumbnails: {

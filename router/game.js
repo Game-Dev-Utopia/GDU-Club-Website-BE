@@ -23,6 +23,11 @@ import * as controller from "../controllers/gameController.js";
  *               - features
  *               - trailer_video
  *               - game_image
+ *               - category
+ *               - downloadable
+ *               - size
+ *               - dimension
+ *               - device
  *             properties:
  *               title:
  *                 type: string
@@ -77,6 +82,21 @@ import * as controller from "../controllers/gameController.js";
  *               developers_id:
  *                 type: string
  *                 default: developer123
+ *               category:
+ *                 type: string
+ *                 default: RPG
+ *               downloadable:
+ *                 type: boolean
+ *                 default: true
+ *               size:
+ *                 type: string
+ *                 default: Quick
+ *               dimension:
+ *                 type: string
+ *                 default: 2D
+ *               device:
+ *                 type: string
+ *                 default: Mobile
 
  *     responses:
  *       201:
@@ -94,7 +114,7 @@ gameRouter.route("/addgame").post(controller.addGame);
  *   get:
  *     tags:
  *       - Game Management
- *     summary: Get All Games
+ *     summary: Get All Games 
  *     responses:
  *       200:
  *         description: Fetched Successfully
