@@ -14,6 +14,8 @@ export async function addDesign(req, res) {
             play_url,
             tags,
             developers_id,
+            likeCount,
+            shareCount
         } = req.body;
 
         const newDesign = new Design({
@@ -31,6 +33,8 @@ export async function addDesign(req, res) {
             play_url,
             tags,
             developers_id,
+            likeCount,
+            shareCount
         });
 
         const savedDesign = await newDesign.save();
@@ -72,6 +76,8 @@ export const updateDesign = async (req, res) => {
             design.achievements = achievements;
             design.tags = tags;
             design.developers_id = developers_id;
+            design.likeCount = likeCount;
+            design.shareCount = shareCount;
 
             const updatedDesign = await design.save();
             res.status(200).json({ msg: "Design updated successfully", design: updatedDesign });

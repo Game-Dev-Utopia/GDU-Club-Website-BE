@@ -17,6 +17,7 @@ import branchRouter from "./router/branch.js";
 import eventRouter from "./router/event.js";
 
 import heroRouter from "./router/hero.js";
+import developerRouter from "./router/developer.js";
 
 
 dotenv.config();
@@ -46,6 +47,7 @@ app.use("/api/branches", branchRouter);
 app.use("/api/event",eventRouter)
 
 app.use("/api/hero",heroRouter);
+app.use("/api/developer",developerRouter);
 connect()
   .then(() => {
     try {

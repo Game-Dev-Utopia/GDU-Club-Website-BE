@@ -67,7 +67,14 @@ const designSchema = new Schema({
     developers_id: {
         type: Schema.Types.ObjectId,
         required: true,
+    },
+    likeCount:{
+        type: Number
+    },
+    shareCount:{
+        type: Number
     }
+    
 });
 
 const Design = model("Design", designSchema);

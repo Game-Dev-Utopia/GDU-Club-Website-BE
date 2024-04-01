@@ -69,6 +69,10 @@ import * as controller from '../controllers/designController.js';
  *               developers_id:
  *                 type: string
  *                 default: developer123
+ *               likeCount:
+ *                  type: number
+ *               shareCount:
+ *                  type: number
 
  *     responses:
  *       201:
