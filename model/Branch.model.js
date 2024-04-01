@@ -1,26 +1,22 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-
-const memberSchema = new mongoose.Schema({
-    memberId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+const memberSchema = new Schema({
+    memberId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     role: { type: String, required: true },
 });
 
-// Define the Event schema
-const eventSchema = new mongoose.Schema({
+const eventSchema = new Schema({
     eventName: { type: String, required: true },
     eventDate: { type: Date, required: true },
     eventDescription: { type: String },
 });
 
-// Define the Games schema
-const gamesSchema = new mongoose.Schema({
-    gameId: { type: mongoose.Schema.Types.ObjectId, ref: 'Game', required: true },
+const gamesSchema = new Schema({
+    gameId: { type: Schema.Types.ObjectId, ref: 'Game', required: true },
     role: { type: String, required: true },
 });
 
-// Define the Contact Information schema
-const contactInformationSchema = new mongoose.Schema({
+const contactInformationSchema = new Schema({
     email: { type: String },
     phone: { type: String },
     socialMediaLinks: {
@@ -29,8 +25,7 @@ const contactInformationSchema = new mongoose.Schema({
     },
 });
 
-// Define the Branch schema
-const branchSchema = new mongoose.Schema({
+const branchSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String },
     image: { type: String },
@@ -44,7 +39,7 @@ const branchSchema = new mongoose.Schema({
     games: [gamesSchema],
 });
 
-// Create the Branch model
-const Branch = mongoose.model('Branch', branchSchema);
+// Check if the model already exists before defining it
+const Branch = model('Branch') || model('Branch', branchSchema);
 
 export default Branch;

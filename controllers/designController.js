@@ -1,4 +1,5 @@
 import Design from "../model/Design.model.js";
+import Logger from "../logger/Logger.js";
 
 export async function addDesign(req, res) {
     try {
@@ -43,11 +44,13 @@ export async function addDesign(req, res) {
 export const getDesigns = async (req, res) => {
     try {
         const designs = await Design.find();
+        Logger(': Response 👍 :', 'Designs retrieved successfully', req.url, req.method);
         res.status(200).json(designs);
     } catch (error) {
+        Logger(': Request 🙏 :', `Error occurred while fetching designs: ${error.message}`, req.url, req.method);
         res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
-}
+};
 
 // export const getDesign = async (req, res) => {
 //     try {
