@@ -16,6 +16,7 @@ import headCouncilRouter from "./router/headCuncil.js";
 import branchRouter from "./router/branch.js";
 import eventRouter from "./router/event.js";
 
+import heroRouter from "./router/hero.js";
 
 
 dotenv.config();
@@ -44,7 +45,7 @@ app.use("/api/headcouncil", headCouncilRouter);
 app.use("/api/branches", branchRouter);
 app.use("/api/event",eventRouter)
 
-
+app.use("/api/hero",heroRouter);
 connect()
   .then(() => {
     try {
