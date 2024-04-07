@@ -1,6 +1,6 @@
 import BusinessProposal from '../model/BusinessProposal.model.js'; 
 import EventHost from '../model/EventHost.model.js'; 
-import Joinus from '../model/JoinUs.model.js';
+import JoinUs from '../model/JoinUs.model.js';
 import ProjectProposal from '../model/ProjectProposal.model.js';
 import Query from '../model/Query.model.js';
 
