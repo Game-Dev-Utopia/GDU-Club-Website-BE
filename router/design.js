@@ -66,7 +66,7 @@ import * as controller from '../controllers/designController.js';
  *                 items:
  *                   type: string
  *                   default: Action
- *               developers_id:
+ *               developer_id:
  *                 type: string
  *                 default: developer123
  *               likeCount:
@@ -91,6 +91,8 @@ import * as controller from '../controllers/designController.js';
  *         description: Fetched
  *       500:
  *         description: Server Error
+ * 
+ * 
  *
  * /api/design/updatedesign:
  *   patch:
@@ -140,7 +142,7 @@ import * as controller from '../controllers/designController.js';
  *                 items:
  *                   type: string
  *                   default: Action
- *               developers_id:
+ *               developer_id:
  *                 type: string
  *                 default: developer123
  * 
@@ -198,7 +200,7 @@ import * as controller from '../controllers/designController.js';
 /** DELETE Methods */
 /**
  * @openapi
- * '/api/design/{userId}':
+ * '/api/design/{id}':
  *  delete:
  *     tags:
  *     - Design Management
@@ -224,4 +226,6 @@ designRouter.route("/getdesigns").get(controller.getDesigns);
 designRouter.route("/updatedesign").patch(controller.updateDesign);
 designRouter.route("/updatedesignassets").patch(controller.updateDesignAssets);
 designRouter.route("/:id").delete(controller.deleteDesign);
+
+
 export default designRouter;

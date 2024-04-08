@@ -79,7 +79,7 @@ import * as controller from "../controllers/gameController.js";
  *                 items:
  *                   type: string
  *                   default: Action
- *               developers_id:
+ *               developer_id:
  *                 type: string
  *                 default: developer123
  *               category:

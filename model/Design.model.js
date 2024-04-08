@@ -64,9 +64,10 @@ const designSchema = new Schema({
         type: [String],
         required: true,
     },
-    developers_id: {
+    developer_id: {
         type: Schema.Types.ObjectId,
         required: true,
+        ref:'Developer'
     },
     likeCount:{
         type: Number

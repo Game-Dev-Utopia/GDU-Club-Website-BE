@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const BusinessProposalSchema = new Schema({
-    details: {
+    basicinfo: {
         Name: String,
         Email: String,
         PhoneNo: String

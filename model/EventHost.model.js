@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const EventHostSchema = new Schema({
-    basicInfo: {
+    basicinfo: {
         Name: String,
         Email: String,
         PhoneNo: String
@@ -15,7 +15,7 @@ const EventHostSchema = new Schema({
     eventinfo: {
         EventName: String,
         EventType: String,
-        Description: String,
+        EventDescription: String,
         PartnershipDetails: String,
         Dates: String
     }

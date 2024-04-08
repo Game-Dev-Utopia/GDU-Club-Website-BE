@@ -19,7 +19,7 @@ import * as controller from "../controllers/contactFormController.js"
  *           schema:
  *             type: object
  *             properties:
- *               details:
+ *               basicinfo:
  *                 type: object
  *                 properties:
  *                   Name:
@@ -82,7 +82,7 @@ import * as controller from "../controllers/contactFormController.js"
  *           schema:
  *             type: object
  *             properties:
- *               basicInfo:
+ *               basicinfo:
  *                 type: object
  *                 properties:
  *                   Name:
@@ -118,7 +118,7 @@ import * as controller from "../controllers/contactFormController.js"
  *                   EventType:
  *                     type: string
  *                     default: Conference
- *                   Description:
+ *                   EventDescription:
  *                     type: string
  *                     default: Description of the event
  *                   PartnershipDetails:
@@ -144,7 +144,7 @@ import * as controller from "../controllers/contactFormController.js"
  *           schema:
  *             type: object
  *             properties:
- *               info:
+ *               basicinfo:
  *                 type: object
  *                 properties:
  *                   Name:
@@ -159,7 +159,7 @@ import * as controller from "../controllers/contactFormController.js"
  *                   Sex:
  *                     type: string
  *                     default: Male
- *               step2:
+ *               careerinfo:
  *                 type: object
  *                 properties:
  *                   Qualification:
@@ -196,7 +196,7 @@ import * as controller from "../controllers/contactFormController.js"
  *           schema:
  *             type: object
  *             properties:
- *               details:
+ *               basicinfo:
  *                 type: object
  *                 properties:
  *                   Name:
@@ -249,7 +249,7 @@ import * as controller from "../controllers/contactFormController.js"
  *           schema:
  *             type: object
  *             properties:
- *               info:
+ *               basicinfo:
  *                 type: object
  *                 properties:
  *                   Name:
@@ -261,6 +261,9 @@ import * as controller from "../controllers/contactFormController.js"
  *                   PhoneNo:
  *                     type: string
  *                     default: "+1234567890"
+ *               query:
+ *                 type: object
+ *                 properties:
  *                   QueryType:
  *                     type: string
  *                     default: General

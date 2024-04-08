@@ -18,10 +18,10 @@ import eventRouter from "./router/event.js";
 
 import heroRouter from "./router/hero.js";
 import developerRouter from "./router/developer.js";
-
-
 dotenv.config();
+
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
@@ -48,6 +48,8 @@ app.use("/api/event",eventRouter)
 
 app.use("/api/hero",heroRouter);
 app.use("/api/developer",developerRouter);
+
+
 connect()
   .then(() => {
     try {

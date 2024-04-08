@@ -20,3 +20,20 @@
 : REQUEST 🙏 : [2024-04-01T10:10:41.412Z]  /getalldevelopers : Error occurred while fetching Developer: Cannot access 'Developer' before initialization
 : REQUEST 🙏 : [2024-04-01T10:10:43.140Z]  /getalldevelopers : Error occurred while fetching Developer: Cannot access 'Developer' before initialization
 : RESPONSE 👍 : [2024-04-01T10:11:13.331Z]  /getalldevelopers : Developer retrieved successfully
+: RESPONSE 👍 : [2024-04-01T13:56:04.452Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T13:59:03.105Z]  /getalldevelopers : Developer retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:00:05.539Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:03:03.972Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:05:48.057Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:12:02.650Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:17:32.409Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:17:57.445Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:18:08.255Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:18:30.163Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:18:41.327Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:19:12.607Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:19:36.312Z]  /getalldevelopers : Developer retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:19:56.049Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:21:24.557Z]  /getdesigns : Designs retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:22:47.985Z]  /getalldevelopers : Developer retrieved successfully
+: RESPONSE 👍 : [2024-04-01T14:23:09.236Z]  /getalldevelopers : Developer retrieved successfully

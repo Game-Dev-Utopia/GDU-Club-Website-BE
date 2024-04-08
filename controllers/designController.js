@@ -13,7 +13,7 @@ export async function addDesign(req, res) {
             download_url,
             play_url,
             tags,
-            developers_id,
+            developer_id,
             likeCount,
             shareCount
         } = req.body;
@@ -32,7 +32,7 @@ export async function addDesign(req, res) {
             download_url,
             play_url,
             tags,
-            developers_id,
+            developer_id,
             likeCount,
             shareCount
         });
@@ -47,7 +47,9 @@ export async function addDesign(req, res) {
 
 export const getDesigns = async (req, res) => {
     try {
-        const designs = await Design.find();
+        const designs = await Design.find().populate('developer_id');
+        //console.log(designs)
+
         Logger(': Response 👍 :', 'Designs retrieved successfully', req.url, req.method);
         res.status(200).json(designs);
     } catch (error) {
@@ -56,18 +58,11 @@ export const getDesigns = async (req, res) => {
     }
 };
 
-// export const getDesign = async (req, res) => {
-//     try {
-//         const design = await Design.findById(req.params.id);
-//         res.status(200).json(design);
-//     } catch (error) {
-//         res.status(500).json({ error: "Internal Server Error", details: error.message });
-//     }
-// }
+
 
 export const updateDesign = async (req, res) => {
     try {
-        const { id, title, description, features, achievements, tags, developers_id } = req.body;
+        const { id, title, description, features, achievements, tags, developer_id } = req.body;
         const design = await Design.findById(id);
         if (design) {
             design.title = title;
@@ -75,7 +70,7 @@ export const updateDesign = async (req, res) => {
             design.features = features;
             design.achievements = achievements;
             design.tags = tags;
-            design.developers_id = developers_id;
+            design.developer_id = developer_id;
             design.likeCount = likeCount;
             design.shareCount = shareCount;
 

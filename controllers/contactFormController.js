@@ -1,6 +1,6 @@
 import BusinessProposal from '../model/BusinessProposal.model.js'; 
 import EventHost from '../model/EventHost.model.js'; 
-import Joinus from '../model/JoinUs.model.js';
+import JoinUs from '../model/JoinUs.model.js';
 import ProjectProposal from '../model/ProjectProposal.model.js';
 import Query from '../model/Query.model.js';
 
@@ -8,13 +8,13 @@ import Query from '../model/Query.model.js';
 export async function addBusinessProposal(req, res) {
     try {
         const {
-            details,
+            basicinfo,
             organisationinfo,
             businessidea
         } = req.body;
 
         const newForm = new BusinessProposal({
-            details,
+            basicinfo,
             organisationinfo,
             businessidea
         });
@@ -41,13 +41,13 @@ export const getBusinessProposals = async (req, res) => {
 export async function addEventHost(req, res) {
     try {
         const {
-            basicInfo,
+            basicinfo,
             organisationinfo,
             eventinfo
         } = req.body;
 
         const newEventHost = new EventHost({
-            basicInfo,
+            basicinfo,
             organisationinfo,
             eventinfo
         });
@@ -74,14 +74,14 @@ export async function getEventHosts(req, res) {
 export async function addJoinUs(req, res) {
     try {
         const {
-            info,
-            step2,
+            basicinfo,
+            careerinfo,
             reasons
         } = req.body;
 
         const newJoinUsEntry = new JoinUs({
-            info,
-            step2,
+            basicinfo,
+            careerinfo,
             reasons
         });
 
@@ -109,13 +109,13 @@ export async function getJoinUsEntries(req, res) {
 export async function addProjectProposal(req, res) {
     try {
         const {
-            details,
+            basicinfo,
             organisationinfo,
             projectdetails
         } = req.body;
 
         const newProjectProposal = new ProjectProposal({
-            details,
+            basicinfo,
             organisationinfo,
             projectdetails
         });
@@ -143,11 +143,15 @@ export async function getProjectProposals(req, res) {
 export async function addQuery(req, res) {
     try {
         const {
-            info
+            basicinfo,
+            query
         } = req.body;
 
+
+
         const newQuery = new Query({
-            info
+            basicinfo,
+            query
         });
 
         const savedQuery = await newQuery.save();

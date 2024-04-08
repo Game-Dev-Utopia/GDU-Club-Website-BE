@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
 
 const JoinUsSchema= new Schema({
-    info: {
+    basicinfo: {
         Name: String,
         Email: String,
         Age: Number,
         Sex: String
     },
-    step2: {
+    careerinfo: {
         Qualification: String,
         Occupation: String
     },
