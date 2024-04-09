@@ -1,186 +1,39 @@
-import BusinessProposal from '../model/BusinessProposal.model.js'; 
-import EventHost from '../model/EventHost.model.js'; 
-import JoinUs from '../model/JoinUs.model.js';
-import ProjectProposal from '../model/ProjectProposal.model.js';
-import Query from '../model/Query.model.js';
+import Form from "../model/Form.model.js";
 
+export const getForm = async (req, res) => {
+        try {
+            const forms = await Form.find();
+            res.status(200).json(forms);
+        } catch (error) {
+            res.status(500).json({ error: "Internal Server Error", details: error.message });
+        }
+    }
 
-export async function addBusinessProposal(req, res) {
+    export async function addFormResponse(req, res) {
     try {
         const {
-            basicinfo,
-            organisationinfo,
-            businessidea
+            formName,
+            response
         } = req.body;
 
-        const newForm = new BusinessProposal({
-            basicinfo,
-            organisationinfo,
-            businessidea
+        const newForm = new Form({
+            formName, response
         });
 
         const savedForm = await newForm.save();
 
-        res.status(201).json({ msg: "BusinessProposal added successfully", form: savedForm });
+        res.status(201).json({ msg: "Form response added successfully", form: savedForm });
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
 }
 
 
-export const getBusinessProposals = async (req, res) => {
-    try {
-        const businessProposals = await BusinessProposal.find();
-        res.status(200).json(businessProposals);
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to add a new event host
-export async function addEventHost(req, res) {
-    try {
-        const {
-            basicinfo,
-            organisationinfo,
-            eventinfo
-        } = req.body;
-
-        const newEventHost = new EventHost({
-            basicinfo,
-            organisationinfo,
-            eventinfo
-        });
-
-        const savedEventHost = await newEventHost.save();
-
-        res.status(201).json({ msg: "Event host added successfully", eventHost: savedEventHost });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to get all event hosts
-export async function getEventHosts(req, res) {
-    try {
-        const eventHosts = await EventHost.find();
-        res.status(200).json({ eventHosts });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to add a new join us entry
-export async function addJoinUs(req, res) {
-    try {
-        const {
-            basicinfo,
-            careerinfo,
-            reasons
-        } = req.body;
-
-        const newJoinUsEntry = new JoinUs({
-            basicinfo,
-            careerinfo,
-            reasons
-        });
-
-        const savedJoinUsEntry = await newJoinUsEntry.save();
-
-        res.status(201).json({ msg: "Join us entry added successfully", joinUsEntry: savedJoinUsEntry });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to get all join us entries
-export async function getJoinUsEntries(req, res) {
-    try {
-        const joinUsEntries = await JoinUs.find();
-
-        res.status(200).json({ joinUsEntries });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-
-// Function to add a new project proposal
-export async function addProjectProposal(req, res) {
-    try {
-        const {
-            basicinfo,
-            organisationinfo,
-            projectdetails
-        } = req.body;
-
-        const newProjectProposal = new ProjectProposal({
-            basicinfo,
-            organisationinfo,
-            projectdetails
-        });
-
-        const savedProjectProposal = await newProjectProposal.save();
-
-        res.status(201).json({ msg: "Project proposal added successfully", projectProposal: savedProjectProposal });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to get all project proposals
-export async function getProjectProposals(req, res) {
-    try {
-        const projectProposals = await ProjectProposal.find();
-
-        res.status(200).json({ projectProposals });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to add a new query
-export async function addQuery(req, res) {
-    try {
-        const {
-            basicinfo,
-            query
-        } = req.body;
-
-
-
-        const newQuery = new Query({
-            basicinfo,
-            query
-        });
-
-        const savedQuery = await newQuery.save();
-
-        res.status(201).json({ msg: "Query added successfully", query: savedQuery });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to get all queries
-export async function getQueries(req, res) {
-    try {
-        const queries = await Query.find();
-
-        res.status(200).json({ queries });
-    } catch (error) {
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
-}
-
-// Function to delete all Business Proposals
+// Function to delete all form Proposals
 export async function clearAllContact(req, res) {
     try {
-        await BusinessProposal.deleteMany(); // Delete all documents from BusinessProposal collection
-        await EventHost.deleteMany();
-        await Joinus.deleteMany();
-        await ProjectProposal.deleteMany();
-        await Query.deleteMany();
+        await Form.deleteMany(); // Delete all documents from BusinessProposal collection
+
 
         res.status(200).json({ message: "Successfully deleted all " });
     } catch (error) {
