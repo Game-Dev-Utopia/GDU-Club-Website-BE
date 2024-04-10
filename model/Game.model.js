@@ -87,7 +87,7 @@ const gameSchema = new mongoose.Schema({
     ref:'Developer'
   },
   category: {
-    type: String,
+    type: [String],
     required: true,
   },
   downloadable: {
