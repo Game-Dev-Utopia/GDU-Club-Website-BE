@@ -79,7 +79,7 @@ import * as controller from "../controllers/branchController.js";
  *                   properties:
  *                     memberId:
  *                       type: string
- *                       example: "john_doe"
+ *                       example: "6617748b7b3a4d6a572a7fb6"
  *                     role:
  *                       type: string
  *                       example: "President"
@@ -120,7 +120,7 @@ import * as controller from "../controllers/branchController.js";
  *                     eventDate: 2024-05-15
  *                     eventDescription: Showcasing the latest in technology
  *                 members:
- *                   - memberId: john_doe
+ *                   - memberId: "6617748b7b3a4d6a572a7fb6"
  *                     role: President
  *                 games:
  *                   - gameId: game123
@@ -307,7 +307,7 @@ branchRouter.route("/deletebranch/:branchId").delete(controller.deleteBranch);
  *                   properties:
  *                     memberId:
  *                       type: string
- *                       example: "jane_doe"
+ *                       example: "6617748b7b3a4d6a572a7fb6"
  *                     role:
  *                       type: string
  *                       example: "Vice President"
@@ -348,7 +348,7 @@ branchRouter.route("/deletebranch/:branchId").delete(controller.deleteBranch);
  *                     eventDate: 2024-06-15
  *                     eventDescription: Showcasing the latest in innovation
  *                 members:
- *                   - memberId: jane_doe
+ *                   - memberId: 6617748b7b3a4d6a572a7fb6
  *                     role: Vice President
  *                 games:
  *                   - gameId: newgame123
