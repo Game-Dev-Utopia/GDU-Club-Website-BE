@@ -81,13 +81,15 @@ const gameSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
-  developer_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref:'Developer'
-  },
+  developer_id: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Developer',
+      required: true,
+    }
+  ],
   category: {
-    type: String,
+    type: [String],
     required: true,
   },
   downloadable: {
