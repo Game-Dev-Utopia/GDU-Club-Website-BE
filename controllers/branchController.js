@@ -3,65 +3,65 @@ import Branch from "../model/Branch.model.js";
 export async function addBranch(req, res) {
     try {
         const {
-        name,
-        description,
-        image,
-        backgroundImage,
-        establishedYear,
-        collegeAffiliation,
-        location,
-        contactInformation,
-        events,
-        members,
-        games,
+            name,
+            description,
+            image,
+            backgroundImage,
+            establishedYear,
+            collegeAffiliation,
+            location,
+            contactInformation,
+            events,
+            members,
+            games,
         } = req.body;
-    
-        const existBranchName = Branch.findOne({ name });
-    
-        const existingBranchName = await existBranchName;
-    
-        if (existingBranchName) {
-        return res.status(400).json({ error: "Please use a unique branch name" });
+
+        // Check if the branch name already exists
+        const existingBranch = await Branch.findOne({ name });
+
+        if (existingBranch) {
+            return res.status(400).json({ error: "Please use a unique branch name" });
         }
-    
+
+        // Create a new Branch object
         const newBranch = new Branch({
-        name,
-        description,
-        image,
-        backgroundImage,
-        establishedYear,
-        collegeAffiliation,
-        location,
-        contactInformation:{
-            email: contactInformation.email,
-            phone: contactInformation.phone,
-            socialMediaLinks: {
-            linkedIn: contactInformation.socialMediaLinks.linkedIn,
-            instagram: contactInformation.socialMediaLinks.instagram,
+            name,
+            description,
+            image,
+            backgroundImage,
+            establishedYear,
+            collegeAffiliation,
+            location,
+            contactInformation: {
+                email: contactInformation.email,
+                phone: contactInformation.phone,
+                socialMediaLinks: {
+                    linkedIn: contactInformation.socialMediaLinks?.linkedIn,
+                    instagram: contactInformation.socialMediaLinks?.instagram,
+                },
             },
-        },
-        events:{
-            eventName: events.eventName,
-            eventDate: events.eventDate,
-            eventDescription: events.eventDescription,
-        },
-        members:{
-            memberId: members.memberId,
-            role: members.role,
-        },
-        games:{
-            gameId: games.gameId,
-            role: games.role,
-        }
+            events: events.map(event => ({
+                eventName: event.eventName,
+                eventDate: event.eventDate,
+                eventDescription: event.eventDescription,
+            })),
+            members: members.map(member => ({
+                memberId: member.memberId,
+                role: member.role,
+            })),
+            games: games.map(game => ({
+                gameId: game.gameId,
+                role: game.role,
+            })),
         });
-    
+
+        // Save the new branch to the database
         const savedBranch = await newBranch.save();
-    
-        return res.status(201).json({msg: "Branch added successfully", branch: savedBranch});
+
+        return res.status(201).json({ msg: "Branch added successfully", branch: savedBranch });
     } catch (error) {
         return res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
-
 }
 
 
@@ -98,26 +98,6 @@ export async function updateBranch(req, res) {
     try {
         const { branchId } = req.params;
         const {
-        name,
-        description,
-        image,
-        backgroundImage,
-        establishedYear,
-        collegeAffiliation,
-        location,
-        contactInformation,
-        events,
-        members,
-        games,
-        } = req.body;
-    
-        if (!branchId) {
-        return res.status(401).send({ error: "Branch Not Found...!" });
-        }
-    
-        const updatedBranch = await Branch.findByIdAndUpdate(
-        { _id: branchId },
-        {
             name,
             description,
             image,
@@ -125,33 +105,58 @@ export async function updateBranch(req, res) {
             establishedYear,
             collegeAffiliation,
             location,
-            contactInformation:{
-            email: contactInformation.email,
-            phone: contactInformation.phone,
-            socialMediaLinks: {
-                linkedIn: contactInformation.socialMediaLinks.linkedIn,
-                instagram: contactInformation.socialMediaLinks.instagram,
+            contactInformation,
+            events,
+            members,
+            games,
+        } = req.body;
+
+        if (!branchId) {
+            return res.status(400).json({ error: "Branch ID not provided" });
+        }
+
+        // Find the branch by ID and update its fields
+        const updatedBranch = await Branch.findByIdAndUpdate(
+            { _id: branchId },
+            {
+                name,
+                description,
+                image,
+                backgroundImage,
+                establishedYear,
+                collegeAffiliation,
+                location,
+                contactInformation: {
+                    email: contactInformation.email,
+                    phone: contactInformation.phone,
+                    socialMediaLinks: {
+                        linkedIn: contactInformation.socialMediaLinks?.linkedIn,
+                        instagram: contactInformation.socialMediaLinks?.instagram,
+                    },
+                },
+                events: events.map(event => ({
+                    eventName: event.eventName,
+                    eventDate: event.eventDate,
+                    eventDescription: event.eventDescription,
+                })),
+                members: members.map(member => ({
+                    memberId: member.memberId,
+                    role: member.role,
+                })),
+                games: games.map(game => ({
+                    gameId: game.gameId,
+                    role: game.role,
+                })),
             },
-            },
-            events:{
-            eventName: events.eventName,
-            eventDate: events.eventDate,
-            eventDescription: events.eventDescription,
-            },
-            members:{
-            memberId: members.memberId,
-            role: members.role,
-            },
-            games:{
-            gameId: games.gameId,
-            role: games.role,
-            },
-        },
-        { new: true }
+            { new: true } // Returns the updated document
         );
-    
-        return res.status(201).json({ msg: "Record Updated...!", branch: updatedBranch });
+
+        if (!updatedBranch) {
+            return res.status(404).json({ error: "Branch not found" });
+        }
+
+        return res.status(200).json({ msg: "Record Updated", branch: updatedBranch });
     } catch (error) {
-        return res.status(401).send({ error });
+        return res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
 }

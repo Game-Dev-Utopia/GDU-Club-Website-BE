@@ -3,6 +3,7 @@ const branchRouter = Router();
 import Auth from "../middleware/auth.js";
 import * as controller from "../controllers/branchController.js";
 
+
 /** POST Methods */
 /**
  * @openapi
@@ -58,35 +59,41 @@ import * as controller from "../controllers/branchController.js";
  *                         type: string
  *                         example: "instagram.com/csclub"
  *               events:
- *                 type: object
- *                 properties:
- *                   eventName:
- *                     type: string
- *                     example: "Tech Expo 2024"
- *                   eventDate:
- *                     type: string
- *                     example: "2024-05-15"
- *                   eventDescription:
- *                     type: string
- *                     example: "Showcasing the latest in technology"
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     eventName:
+ *                       type: string
+ *                       example: "Tech Expo 2024"
+ *                     eventDate:
+ *                       type: string
+ *                       example: "2024-05-15"
+ *                     eventDescription:
+ *                       type: string
+ *                       example: "Showcasing the latest in technology"
  *               members:
- *                 type: object
- *                 properties:
- *                   memberId:
- *                     type: string
- *                     example: "john_doe"
- *                   role:
- *                     type: string
- *                     example: "President"
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     memberId:
+ *                       type: string
+ *                       example: "john_doe"
+ *                     role:
+ *                       type: string
+ *                       example: "President"
  *               games:
- *                 type: object
- *                 properties:
- *                   gameId:
- *                     type: string
- *                     example: "game123"
- *                   role:
- *                     type: string
- *                     example: "Organizer"
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     gameId:
+ *                       type: string
+ *                       example: "game123"
+ *                     role:
+ *                       type: string
+ *                       example: "Organizer"
  *     responses:
  *       '201':
  *         description: Branch added successfully
@@ -109,15 +116,15 @@ import * as controller from "../controllers/branchController.js";
  *                     linkedIn: linkedin.com/csclub
  *                     instagram: instagram.com/csclub
  *                 events:
- *                   eventName: Tech Expo 2024
- *                   eventDate: 2024-05-15
- *                   eventDescription: Showcasing the latest in technology
+ *                   - eventName: Tech Expo 2024
+ *                     eventDate: 2024-05-15
+ *                     eventDescription: Showcasing the latest in technology
  *                 members:
- *                   memberId: john_doe
- *                   role: President
+ *                   - memberId: john_doe
+ *                     role: President
  *                 games:
- *                   gameId: game123
- *                   role: Organizer
+ *                   - gameId: game123
+ *                     role: Organizer
  *       '400':
  *         description: Please use a unique branch name
  *         content:
@@ -218,7 +225,6 @@ branchRouter.route("/getallbranches").get(controller.getAllBranches);
 branchRouter.route("/deletebranch/:branchId").delete(controller.deleteBranch);
 
 
-
 /** PATCH Methods */
 /**
  * @openapi
@@ -226,11 +232,11 @@ branchRouter.route("/deletebranch/:branchId").delete(controller.deleteBranch);
  *   patch:
  *     tags:
  *       - Branch Management
- *     summary: Update branch details
+ *     summary: Update an existing branch
  *     parameters:
  *       - name: branchId
  *         in: path
- *         description: The unique Id of the branch
+ *         description: ID of the branch to update
  *         required: true
  *         schema:
  *           type: string
@@ -243,93 +249,125 @@ branchRouter.route("/deletebranch/:branchId").delete(controller.deleteBranch);
  *             properties:
  *               name:
  *                 type: string
+ *                 example: "New Computer Science Club"
  *               description:
  *                 type: string
+ *                 example: "A club for technology enthusiasts"
  *               image:
  *                 type: string
+ *                 example: "https://example.com/newcsclub.jpg"
  *               backgroundImage:
  *                 type: string
+ *                 example: "https://example.com/newbackground.jpg"
  *               establishedYear:
  *                 type: integer
+ *                 example: 2021
  *               collegeAffiliation:
  *                 type: string
+ *                 example: "New Example University"
  *               location:
  *                 type: string
+ *                 example: "New Example City"
  *               contactInformation:
  *                 type: object
  *                 properties:
  *                   email:
  *                     type: string
+ *                     example: "newcsclub@example.com"
  *                   phone:
  *                     type: string
+ *                     example: "9876543210"
  *                   socialMediaLinks:
  *                     type: object
  *                     properties:
  *                       linkedIn:
  *                         type: string
+ *                         example: "linkedin.com/newcsclub"
  *                       instagram:
  *                         type: string
+ *                         example: "instagram.com/newcsclub"
  *               events:
- *                 type: object
- *                 properties:
- *                   eventName:
- *                     type: string
- *                   eventDate:
- *                     type: string
- *                   eventDescription:
- *                     type: string
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     eventName:
+ *                       type: string
+ *                       example: "New Tech Expo 2024"
+ *                     eventDate:
+ *                       type: string
+ *                       example: "2024-06-15"
+ *                     eventDescription:
+ *                       type: string
+ *                       example: "Showcasing the latest in innovation"
  *               members:
- *                 type: object
- *                 properties:
- *                   memberId:
- *                     type: string
- *                   role:
- *                     type: string
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     memberId:
+ *                       type: string
+ *                       example: "jane_doe"
+ *                     role:
+ *                       type: string
+ *                       example: "Vice President"
  *               games:
- *                 type: object
- *                 properties:
- *                   gameId:
- *                     type: string
- *                   role:
- *                     type: string
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     gameId:
+ *                       type: string
+ *                       example: "newgame123"
+ *                     role:
+ *                       type: string
+ *                       example: "Coordinator"
  *     responses:
  *       '201':
- *         description: Record Updated
+ *         description: Branch updated successfully
  *         content:
  *           application/json:
  *             example:
- *               msg: Record Updated
+ *               msg: Branch updated successfully
  *               branch:
- *                 name: Updated Branch
- *                 description: Updated description
- *                 image: https://example.com/updated_image.jpg
- *                 backgroundImage: https://example.com/updated_background.jpg
- *                 establishedYear: 2023
- *                 collegeAffiliation: Updated University
- *                 location: Updated City
+ *                 name: New Computer Science Club
+ *                 description: A club for technology enthusiasts
+ *                 image: https://example.com/newcsclub.jpg
+ *                 backgroundImage: https://example.com/newbackground.jpg
+ *                 establishedYear: 2021
+ *                 collegeAffiliation: New Example University
+ *                 location: New Example City
  *                 contactInformation:
- *                   email: updated@example.com
+ *                   email: newcsclub@example.com
  *                   phone: "9876543210"
  *                   socialMediaLinks:
- *                     linkedIn: linkedin.com/updated
- *                     instagram: instagram.com/updated
+ *                     linkedIn: linkedin.com/newcsclub
+ *                     instagram: instagram.com/newcsclub
  *                 events:
- *                   eventName: Updated Event
- *                   eventDate: 2024-06-01
- *                   eventDescription: Updated event description
+ *                   - eventName: New Tech Expo 2024
+ *                     eventDate: 2024-06-15
+ *                     eventDescription: Showcasing the latest in innovation
  *                 members:
- *                   memberId: updated_member
- *                   role: Vice President
+ *                   - memberId: jane_doe
+ *                     role: Vice President
  *                 games:
- *                   gameId: updated_game123
- *                   role: Coordinator
- *       '401':
- *         description: Branch Not Found or Unauthorized
+ *                   - gameId: newgame123
+ *                     role: Coordinator
+ *       '400':
+ *         description: Please provide valid data for branch update
  *         content:
  *           application/json:
  *             example:
- *               error: Branch Not Found or Unauthorized
+ *               error: Invalid branch update data
+ *       '500':
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: Internal Server Error
+ *               details: Error details message
  */
+
 branchRouter.route("/updateBranch/:branchId").patch(controller.updateBranch);
 
 
