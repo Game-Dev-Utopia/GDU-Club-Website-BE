@@ -21,6 +21,7 @@ import * as controller from '../controllers/achievementController.js';
  *               - title
  *               - description
  *               - date
+ *               - ranked
  *             properties:
  *               title:
  *                 type: string
@@ -34,7 +35,53 @@ import * as controller from '../controllers/achievementController.js';
  *               image:
  *                 type: string
  *                 default: https://example.com/achievement 
-
+ *               ranked:
+ *                 type: boolean
+ *                 default: false
+ *               rank:
+ *                 type: number
+ *                 default: 1
+ *     responses:
+ *       201:
+ *         description: Created
+ *       500:
+ *         description: Server Error
+ * 
+ * /api/achievement/addachievementtop3:
+ *   post:
+ *     tags:
+ *       - Achievements
+ *     summary: Add a new achievement
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - title
+ *               - description
+ *               - date
+ *               - ranked
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 default: Sample achievement
+ *               description:
+ *                 type: string
+ *                 default: A description 
+ *               date:
+ *                 type: date
+ *                 default: Thu Feb 29 2024 20:45:04 GMT+0530 (India Standard Time)
+ *               image:
+ *                 type: string
+ *                 default: https://example.com/achievement 
+ *               ranked:
+ *                 type: boolean
+ *                 default: false
+ *               rank:
+ *                 type: number
+ *                 default: 1
  *     responses:
  *       201:
  *         description: Created
@@ -85,6 +132,12 @@ import * as controller from '../controllers/achievementController.js';
  *               image:
  *                 type: string
  *                 default: https://example.com/design
+ *               ranked:
+ *                 type: boolean
+ *                 default: false
+ *               rank:
+ *                 type: number
+ *                 default: 1
  * 
  *     responses:
  *       201:
@@ -125,6 +178,7 @@ import * as controller from '../controllers/achievementController.js';
  */
 
 achievementRouter.route("/addachievement").post(controller.addAchievement)
+achievementRouter.route("/addachievementtop3").post(controller.addAchievementToTop3);
 achievementRouter.route("/getachievements").get(controller.getAchievements)
 achievementRouter.route("/updateachievement").put(controller.updateAchievement)
 achievementRouter.route("/deleteachievement").delete(controller.deleteAchievement)

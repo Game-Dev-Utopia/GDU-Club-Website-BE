@@ -7,23 +7,19 @@ const timelineEventSchema = new Schema({
     type: String,
     required: [true, "Please provide title"],
   },
-  description: {
-    type: String,
+  details: {
+    type: Array,
     required: [true, "Please provide description"],
   },
   date: {
     type: Date,
     required: [true, "Please provide date"],
   },
-  location: {
-    type: String,
-    required: [true, "Please provide location"],
-  },
-  category: {
+  altName: {
     type: String,
     required: [true, "Please provide category"],
   },
-  link: {
+  image: {
     type: String,
     validate: {
       validator: (value) => {

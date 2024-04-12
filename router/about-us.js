@@ -3,7 +3,6 @@ const aboutUsRouter = Router();
 import Auth from '../middleware/auth.js';
 import * as controller from '../controllers/AboutUsController.js';
 
-/** GET Methods */
 /**
  * @openapi
  * /api/aboutus/getcontent:
@@ -11,22 +10,19 @@ import * as controller from '../controllers/AboutUsController.js';
  *     tags:
  *       - About Us
  *     summary: Get About Us Content
+ *     description: Retrieves the About Us content from the database
  *     responses:
- *       200:
+ *       '200':
  *         description: Fetched Successfully
- *       404:
+ *       '404':
  *         description: Not Found
- *       500:
+ *       '500':
  *         description: Server Error
  */
-aboutUsRouter.route('/getcontent').get(controller.getAboutUsContent);
 
-aboutUsRouter.route('/addfutureplan').post(Auth, controller.addFuturePlan);
-aboutUsRouter.route('/updatefutureplan/:id').put(Auth, controller.updateFuturePlan);
-aboutUsRouter.route('/deletefutureplan/:id').delete(Auth, controller.deleteFuturePlan);
+aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
 
 
-/** POST Methods */
 /**
  * @openapi
  * /api/aboutus/updatecontent:
@@ -34,8 +30,6 @@ aboutUsRouter.route('/deletefutureplan/:id').delete(Auth, controller.deleteFutur
  *     tags:
  *       - About Us
  *     summary: Update or Create About Us Content
- *     security:
- *       - Auth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -43,35 +37,244 @@ aboutUsRouter.route('/deletefutureplan/:id').delete(Auth, controller.deleteFutur
  *           schema:
  *             type: object
  *             required:
- *               - title
- *               - description
- *               - team
+ *               - branchesData
+ *               - topContributionsAndProjects
+ *               - ourTeamsData
+ *               - specialThanksData
+ *               - headCouncilData
  *             properties:
- *               title:
- *                 type: string
- *                 default: About Us Title
- *               description:
- *                 type: string
- *                 default: A brief description about us
- *               team:
+ *               branchesData:
  *                 type: array
  *                 items:
  *                   type: object
  *                   properties:
- *                     name:
+ *                     title:
  *                       type: string
- *                       default: Team Member Name
- *                     role:
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           designation:
+ *                             type: string
+ *                           desc:
+ *                             type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://linkedin.com/", "id"]
+ *                           github:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://github.com/", "id"]
+ *                           instagram:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://instagram.com/", "id"]
+ *               topContributionsAndProjects:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
  *                       type: string
- *                       default: Team Member Role
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           designation:
+ *                             type: string
+ *                           desc:
+ *                             type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://linkedin.com/", "id"]
+ *                           github:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://github.com/", "id"]
+ *                           instagram:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://instagram.com/", "id"]
+ *               ourTeamsData:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           designation:
+ *                             type: string
+ *                           desc:
+ *                             type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://linkedin.com/", "id"]
+ *                           github:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://github.com/", "id"]
+ *                           instagram:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://instagram.com/", "id"]
+ *               specialThanksData:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           designation:
+ *                             type: string
+ *                           desc:
+ *                             type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://linkedin.com/", "id"]
+ *                           github:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://github.com/", "id"]
+ *                           instagram:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://instagram.com/", "id"]
+ *               headCouncilData:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           designation:
+ *                             type: string
+ *                           desc:
+ *                             type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://linkedin.com/", "id"]
+ *                           github:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://github.com/", "id"]
+ *                           instagram:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://instagram.com/", "id"]
+ * 
+ *               boardMembersData:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           designation:
+ *                             type: string
+ *                           desc:
+ *                             type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://linkedin.com/", "id"]
+ *                           github:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://github.com/", "id"]
+ *                           instagram:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                             example: ["https://instagram.com/", "id"]
  *     responses:
- *       200:
+ *       '200':
  *         description: Updated or Created Successfully
- *       401:
+ *       '401':
  *         description: Unauthorized
- *       500:
+ *       '500':
  *         description: Server Error
  */
-aboutUsRouter.route('/updatecontent').post(Auth, controller.updateAboutUsContent);
+
+aboutUsRouter.route('/updatecontent').post(controller.postAboutUsData);
 
 export default aboutUsRouter;
