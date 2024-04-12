@@ -22,7 +22,7 @@ import * as controller from '../controllers/designController.js';
  *               - title
  *               - description
  *               - features
- *               - design
+ *               - designs
  *             properties:
  *               title:
  *                 type: string
@@ -30,17 +30,11 @@ import * as controller from '../controllers/designController.js';
  *               description:
  *                 type: string
  *                 default: A description of the design
- *               features:
- *                 type: string
- *                 default: Exciting features of the design
- *               design:
- *                 type: string
- *                 default: https://example.com/design
- *               thumbnails:
+ *               designs:
  *                 type: array
  *                 items:
  *                   type: string
- *                   default: https://example.com/thumbnail1
+ *                   default: https://example.com/deisgn1
  *               achievements:
  *                 type: array
  *                 items:
@@ -58,17 +52,9 @@ import * as controller from '../controllers/designController.js';
  *               download_url:
  *                 type: string
  *                 default: https://example.com/download
- *               play_url:
- *                 type: string
- *                 default: https://example.com/play
- *               tags:
- *                 type: array
- *                 items:
- *                   type: string
- *                   default: Action
  *               developer_id:
  *                 type: string
- *                 default: developer123
+ *                 default: 660a87f995d4e25405d9b312
  *               likeCount:
  *                  type: number
  *               shareCount:
@@ -108,21 +94,22 @@ import * as controller from '../controllers/designController.js';
  *             required:
  *               - title
  *               - description
- *               - features
- *               - design
+ *               - designs
  *             properties:
  *               id:
  *                 type: string
- *                 default: 65d73703a8ebb37617be395c
+ *                 default: enter id
  *               title:
  *                 type: string
  *                 default: Sample Design
  *               description:
  *                 type: string
  *                 default: A description of the design
- *               features:
- *                 type: string
- *                 default: Exciting features of the design
+ *               designs:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: https://example.com/deisgn1
  *               achievements:
  *                 type: array
  *                 items:
@@ -137,14 +124,16 @@ import * as controller from '../controllers/designController.js';
  *                    description:
  *                      type: string
  *                      default: Description of the achievement
- *               tags:
- *                 type: array
- *                 items:
- *                   type: string
- *                   default: Action
+ *               download_url:
+ *                 type: string
+ *                 default: https://example.com/download
  *               developer_id:
  *                 type: string
- *                 default: developer123
+ *                 default: 660a87f995d4e25405d9b312
+ *               likeCount:
+ *                  type: number
+ *               shareCount:
+ *                  type: number
  * 
  *     responses:
  *       201:
@@ -167,26 +156,19 @@ import * as controller from '../controllers/designController.js';
  *             required:
  *               - title
  *               - description
- *               - features
- *               - design
+ *               - designs
  *             properties:
  *               id:
  *                 type: string
  *                 default: 65d73703a8ebb37617be395c
- *               design:
- *                 type: string
- *                 default: https://example.com/design
- *               thumbnails:
+ *               designs:
  *                 type: array
  *                 items:
  *                   type: string
- *                   default: https://example.com/thumbnail1
+ *                   default: https://example.com/deisgn1
  *               download_url:
  *                 type: string
  *                 default: https://example.com/download
- *               play_url:
- *                 type: string
- *                 default: https://example.com/play
  * responses:
  *       201:
  *         description: Fetched

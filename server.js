@@ -12,8 +12,6 @@ import achievementRouter from "./router/achievement.js";
 import aboutUsRouter from "./router/about-us.js";
 import sponserRouter from "./router/sponsers.js";
 import contactFormRouter from "./router/contactForm.js";
-import headCouncilRouter from "./router/headCuncil.js";
-import branchRouter from "./router/branch.js";
 import eventRouter from "./router/event.js";
 
 import heroRouter from "./router/hero.js";
@@ -42,8 +40,6 @@ app.use("/api/achievement", achievementRouter);
 app.use("/api/aboutus", aboutUsRouter);
 app.use("/api/sponser", sponserRouter);
 app.use("/api/form", contactFormRouter);
-app.use("/api/headcouncil", headCouncilRouter);
-app.use("/api/branches", branchRouter);
 app.use("/api/event",eventRouter)
 
 app.use("/api/hero",heroRouter);

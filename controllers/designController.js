@@ -6,13 +6,9 @@ export async function addDesign(req, res) {
         const {
             title,
             description,
-            features,
-            design,
-            thumbnails,
+            designs,
             achievements,
             download_url,
-            play_url,
-            tags,
             developer_id,
             likeCount,
             shareCount
@@ -21,17 +17,13 @@ export async function addDesign(req, res) {
         const newDesign = new Design({
             title,
             description,
-            features,
-            design,
-            thumbnails,
+            designs,
             achievements: [{
                 image: achievements.image,
                 title: achievements.title,
                 description: achievements.description,
             }],
             download_url,
-            play_url,
-            tags,
             developer_id,
             likeCount,
             shareCount
@@ -62,14 +54,14 @@ export const getDesigns = async (req, res) => {
 
 export const updateDesign = async (req, res) => {
     try {
-        const { id, title, description, features, achievements, tags, developer_id } = req.body;
+        const { id, title, description,designs, achievements,download_url, developer_id , likeCount, shareCount} = req.body;
         const design = await Design.findById(id);
         if (design) {
             design.title = title;
             design.description = description;
-            design.features = features;
+            design.designs = designs;
             design.achievements = achievements;
-            design.tags = tags;
+            design.download_url = download_url;
             design.developer_id = developer_id;
             design.likeCount = likeCount;
             design.shareCount = shareCount;
@@ -100,23 +92,19 @@ export const deleteDesign = async (req, res) => {
 
 export const updateDesignAssets = async (req, res) => {
     try {
-        const { id, design, thumbnails, download_url, play_url } = req.body;
+        const { id, designs , download_url } = req.body;
         const oldDesign = await Design.findById(id);
         if (!oldDesign) {
             return res.status(404).json({ error: "Design not found" });
         }
-        if (design) {
-            oldDesign.design = design;
+        if (designs) {
+            oldDesign.designs = designs;
         }
-        if (thumbnails) {
-            oldDesign.thumbnails = thumbnails;
-        }
+
         if (download_url) {
             oldDesign.download_url = download_url;
         }
-        if (play_url) {
-            oldDesign.play_url = play_url;
-        }
+
         const updatedDesign = await oldDesign.save();
         res.status(200).json({ msg: "Design assets updated successfully", design: updatedDesign });
     } catch (error) {

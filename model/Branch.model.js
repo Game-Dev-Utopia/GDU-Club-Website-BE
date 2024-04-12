@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 
+
 const memberSchema = new Schema({
     memberId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     role: { type: String, required: true },

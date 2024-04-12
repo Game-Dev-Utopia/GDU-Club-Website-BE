@@ -2,13 +2,13 @@ import TimelineModel from "../model/Timeline.model.js";
 
 export async function addTimelineEvent(req, res) {
   try {
-    const { title, description, date, location, category, link } = req.body;
+    const { title, details, date, altName, image } = req.body;
 
     const existTimelineTitle = TimelineModel.findOne({ title });
-    const existTimelineDescription = TimelineModel.findOne({ description });
+    const existTimelinedetails = TimelineModel.findOne({ details });
 
-    const [existingTimelineTitle, existingTimelineDescription] =
-      await Promise.all([existTimelineTitle, existTimelineDescription]);
+    const [existingTimelineTitle, existingTimelinedetails] =
+      await Promise.all([existTimelineTitle, existTimelinedetails]);
 
     if (existingTimelineTitle) {
       return res
@@ -16,19 +16,18 @@ export async function addTimelineEvent(req, res) {
         .json({ error: "Please use a unique timeline title" });
     }
 
-    if (existingTimelineDescription) {
+    if (existingTimelinedetails) {
       return res
         .status(400)
-        .json({ error: "Please use a unique timeline description" });
+        .json({ error: "Please use a unique timeline details" });
     }
 
     const newTimelineModel = new TimelineModel({
       title,
-      description,
+      details,
       date,
-      location,
-      category,
-      link,
+      altName,
+      image,
     });
 
     const savedTimelineModel = await newTimelineModel.save();

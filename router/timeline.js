@@ -19,30 +19,27 @@ import * as controller from "../controllers/timelineController.js";
  *             type: object
  *             required:
  *               - title
- *               - description
+ *               - details
  *               - date
- *               - location
- *               - category
- *               - link
+ *               - image
  *             properties:
  *               title:
  *                 type: string
  *                 default: Sample Timeline Title
- *               description:
- *                 type: string
- *                 default: A description of the timeline
+ *               details:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: Developing and Maintaining web applications using React.js and other related technologies
  *               date:
  *                 type: string
  *                 default: 10/2/2024
- *               location:
- *                 type: string
- *                 default: Your timeline location
- *               category:
- *                 type: string
- *                 default: Timeline category
- *               link:
+ *               image:
  *                 type: string
  *                 default: https://example.com/
+ *               altName:
+ *                 type: string
+ *                 default: alt name
  *     responses:
  *       201:
  *         description: Created

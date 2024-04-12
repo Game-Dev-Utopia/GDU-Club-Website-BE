@@ -40,7 +40,7 @@ import * as controller from "../controllers/contactFormController.js";
  *   get:
  *     tags:
  *       - Form Management
- *     summary: Get all Designs
+ *     summary: Get all form responses
  *     responses:
  *       201:
  *         description: Fetched
