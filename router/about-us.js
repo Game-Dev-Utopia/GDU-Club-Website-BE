@@ -50,6 +50,8 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *                   properties:
  *                     title:
  *                       type: string
+ *                     description:
+ *                       type: string
  *                     data:
  *                       type: array
  *                       items:
@@ -86,6 +88,8 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *                   type: object
  *                   properties:
  *                     title:
+ *                       type: string
+ *                     description:
  *                       type: string
  *                     data:
  *                       type: array
@@ -124,6 +128,8 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *                   properties:
  *                     title:
  *                       type: string
+ *                     description:
+ *                       type: string
  *                     data:
  *                       type: array
  *                       items:
@@ -160,6 +166,8 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *                   type: object
  *                   properties:
  *                     title:
+ *                       type: string
+ *                     description:
  *                       type: string
  *                     data:
  *                       type: array
@@ -198,6 +206,8 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *                   type: object
  *                   properties:
  *                     title:
+ *                       type: string
+ *                     description:
  *                       type: string
  *                     data:
  *                       type: array

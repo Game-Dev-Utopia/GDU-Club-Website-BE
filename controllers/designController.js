@@ -9,7 +9,7 @@ export async function addDesign(req, res) {
             designs,
             achievements,
             download_url,
-            developer_id,
+            developer_ids,
             likeCount,
             shareCount
         } = req.body;
@@ -24,7 +24,7 @@ export async function addDesign(req, res) {
                 description: achievements.description,
             }],
             download_url,
-            developer_id,
+            developer_ids,
             likeCount,
             shareCount
         });
@@ -39,7 +39,7 @@ export async function addDesign(req, res) {
 
 export const getDesigns = async (req, res) => {
     try {
-        const designs = await Design.find().populate('developer_id');
+        const designs = await Design.find().populate('developer_ids');
         //console.log(designs)
 
         Logger(': Response 👍 :', 'Designs retrieved successfully', req.url, req.method);
@@ -54,7 +54,7 @@ export const getDesigns = async (req, res) => {
 
 export const updateDesign = async (req, res) => {
     try {
-        const { id, title, description,designs, achievements,download_url, developer_id , likeCount, shareCount} = req.body;
+        const { id, title, description,designs, achievements,download_url, developer_ids , likeCount, shareCount} = req.body;
         const design = await Design.findById(id);
         if (design) {
             design.title = title;
@@ -62,7 +62,7 @@ export const updateDesign = async (req, res) => {
             design.designs = designs;
             design.achievements = achievements;
             design.download_url = download_url;
-            design.developer_id = developer_id;
+            design.developer_ids = developer_ids;
             design.likeCount = likeCount;
             design.shareCount = shareCount;
 

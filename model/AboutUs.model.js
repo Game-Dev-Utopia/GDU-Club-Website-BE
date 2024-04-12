@@ -6,6 +6,10 @@ const boardMembersSchema = Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: false
+  },
   data: [{
     name: {
       type: String,
@@ -52,6 +56,10 @@ const branchSchema = Schema({
   title: {
     type: String,
     required: true
+  },
+  description: {
+    type: String,
+    required: false
   },
   data: [{
     name: {
@@ -100,6 +108,10 @@ const topContributionsAndProjectsSchema = Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: false
+  },
   data: [{
     name: {
       type: String,
@@ -146,6 +158,10 @@ const OurTeamsSchema = Schema({
   title: {
     type: String,
     required: true
+  },
+  description: {
+    type: String,
+    required: false
   },
   data: [{
     name: {
@@ -194,6 +210,10 @@ const specialThanksSchema = Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: false
+  },
   data: [{
     name: {
       type: String,
@@ -238,11 +258,11 @@ const specialThanksSchema = Schema({
 
 
 const aboutUsSchema = new Schema({
+  boardMembersData: [boardMembersSchema],
   branchesData: [branchSchema],
-  topContributionsAndProjects: [topContributionsAndProjectsSchema],
   ourTeamsData: [OurTeamsSchema],
   specialThanksData: [specialThanksSchema],
-  boardMembersData: [boardMembersSchema]
+  topContributionsAndProjects: [topContributionsAndProjectsSchema],
 });
 // Check if the model already exists before defining it
 const AboutUs = model('AboutUs', aboutUsSchema);

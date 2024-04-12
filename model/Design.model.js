@@ -29,11 +29,11 @@ const designSchema = new Schema({
             message: "Invalid URL format for download URL",
         },
     },
-    developer_id: {
+    developer_ids: [{
         type: Schema.Types.ObjectId,
+        ref:'Developer',
         required: true,
-        ref:'Developer'
-    },
+    }],
     likeCount:{
         type: Number
     },

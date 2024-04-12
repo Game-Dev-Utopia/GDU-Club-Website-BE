@@ -12,7 +12,7 @@ const timelineEventSchema = new Schema({
     required: [true, "Please provide description"],
   },
   date: {
-    type: Date,
+    type: String,
     required: [true, "Please provide date"],
   },
   altName: {

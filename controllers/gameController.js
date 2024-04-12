@@ -14,8 +14,8 @@ export async function addGame(req, res) {
       download_url,
       play_url,
       tags,
-      developer_id,
-      category,
+      developer_ids,
+      categories,
       downloadable,
       size,
       dimension,
@@ -58,8 +58,8 @@ export async function addGame(req, res) {
       download_url,
       play_url,
       tags,
-      developer_id,
-      category,
+      developer_ids,
+      categories,
       downloadable,
       size,
       dimension,
@@ -79,7 +79,7 @@ export async function addGame(req, res) {
 
 export async function getAllGames(req, res) {
   try {
-    const games = await GameModel.find().populate('developer_id');
+    const games = await GameModel.find().populate('developer_ids');
     console.log(games);
 
     res.status(200).json({ games });

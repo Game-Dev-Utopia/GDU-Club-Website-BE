@@ -52,9 +52,11 @@ import * as controller from '../controllers/designController.js';
  *               download_url:
  *                 type: string
  *                 default: https://example.com/download
- *               developer_id:
- *                 type: string
- *                 default: 660a87f995d4e25405d9b312
+ *               developer_ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: developer_ids
  *               likeCount:
  *                  type: number
  *               shareCount:
@@ -127,9 +129,11 @@ import * as controller from '../controllers/designController.js';
  *               download_url:
  *                 type: string
  *                 default: https://example.com/download
- *               developer_id:
- *                 type: string
- *                 default: 660a87f995d4e25405d9b312
+ *               developer_ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: developer_ids
  *               likeCount:
  *                  type: number
  *               shareCount:
