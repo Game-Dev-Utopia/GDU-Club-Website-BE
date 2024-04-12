@@ -14,42 +14,28 @@ const gameSchema = new mongoose.Schema({
     required: true,
     trim: true,
     minlength: 10,
+    maxlength: 100000,
     unique: [true, "Description Exist"],
   },
-  features: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 10,
-  },
-  trailer_video: {
-    type: String,
-    required: true,
-    trim: true,
-    validate: {
-      validator: (value) => {
-        return /^https?:\/\/.+$/.test(value);
+  media: [
+    {
+      type: String,
+      required: true,
+      trim: true,
+      validate: {
+        validator: (value) => {
+          return /^https?:\/\/.+$/.test(value);
+        },
+        message: "Invalid URL format for game image",
       },
-      message: "Invalid URL format for trailer video",
-    },
-  },
-  game_image: {
+    }
+  ],
+  thumbnail: {
     type: String,
     required: true,
-    trim: true,
     validate: {
-      validator: (value) => {
-        return /^https?:\/\/.+$/.test(value);
-      },
-      message: "Invalid URL format for game image",
-    },
-  },
-  thumbnails: {
-    type: [String],
-    required: true,
-    validate: {
-      validator: (value) => value.every((url) => /^https?:\/\/.+$/.test(url)),
-      message: "Invalid URL format for thumbnails",
+      validator: (value) => /^https?:\/\/.+$/.test(value),
+      message: "Invalid URL format for thumbnail",
     },
   },
   achievements: [{
@@ -57,10 +43,16 @@ const gameSchema = new mongoose.Schema({
     title: String,
     description: String
   }],
-  system_requirements: {
-    type: [String],
-    required: true,
-  },
+  system_requirements: [
+    {
+      property: {
+        type: String,
+      },
+      requirement: {
+        type: String,
+      }
+    }
+  ],
   download_url: {
     type: String,
     required: true,
@@ -105,7 +97,7 @@ const gameSchema = new mongoose.Schema({
     required: true
   },
   device: {
-    type: String,
+    type: [String],
     required: true
   }
 });

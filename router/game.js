@@ -20,9 +20,7 @@ import * as controller from "../controllers/gameController.js";
  *             required:
  *               - title
  *               - description
- *               - features
- *               - trailer_video
- *               - game_image
+ *               - media
  *               - categories
  *               - downloadable
  *               - size
@@ -35,20 +33,14 @@ import * as controller from "../controllers/gameController.js";
  *               description:
  *                 type: string
  *                 default: A description of the game
- *               features:
- *                 type: string
- *                 default: Exciting features of the game
- *               trailer_video:
- *                 type: string
- *                 default: https://example.com/trailer
- *               game_image:
- *                 type: string
- *                 default: https://example.com/game_image
- *               thumbnails:
+ *               media:
  *                 type: array
  *                 items:
- *                   type: string
- *                   default: https://example.com/thumbnail1
+ *                  type: string
+ *                  default: https://example.com/game_image
+ *               thumbnail:
+ *                 type: string
+ *                 default: https://example.com/thumbnail1
  *               achievements:
  *                 type: array
  *                 items:
@@ -66,8 +58,14 @@ import * as controller from "../controllers/gameController.js";
  *               system_requirements:
  *                 type: array
  *                 items:
- *                   type: string
- *                   default: System Requirement
+ *                   type: object
+ *                   properties:
+ *                      property:
+ *                          type: string
+ *                          default: OS
+ *                      requirement:
+ *                         type: string
+ *                         default: Windows 10
  *               download_url:
  *                 type: string
  *                 default: https://example.com/download
@@ -99,8 +97,10 @@ import * as controller from "../controllers/gameController.js";
  *                 type: string
  *                 default: 2D
  *               device:
- *                 type: string
- *                 default: Mobile
+ *                 type: array
+ *                 items:
+ *                      type: string
+ *                      default: Mobile
 
  *     responses:
  *       201:
