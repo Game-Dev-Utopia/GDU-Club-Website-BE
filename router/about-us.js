@@ -191,43 +191,6 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *                             items:
  *                               type: string
  *                             example: ["https://instagram.com/", "id"]
- *               headCouncilData:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     title:
- *                       type: string
- *                     data:
- *                       type: array
- *                       items:
- *                         type: object
- *                         properties:
- *                           name:
- *                             type: string
- *                           designation:
- *                             type: string
- *                           desc:
- *                             type: string
- *                           profileImageURL:
- *                             type: string
- *                           bgImageURL:
- *                             type: string
- *                           linkedin:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://linkedin.com/", "id"]
- *                           github:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://github.com/", "id"]
- *                           instagram:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://instagram.com/", "id"]
  * 
  *               boardMembersData:
  *                 type: array
