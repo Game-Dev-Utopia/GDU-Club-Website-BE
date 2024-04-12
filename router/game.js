@@ -23,7 +23,7 @@ import * as controller from "../controllers/gameController.js";
  *               - features
  *               - trailer_video
  *               - game_image
- *               - category
+ *               - categories
  *               - downloadable
  *               - size
  *               - dimension
@@ -79,12 +79,16 @@ import * as controller from "../controllers/gameController.js";
  *                 items:
  *                   type: string
  *                   default: Action
- *               developer_id:
- *                 type: string
- *                 default: developer123
- *               category:
- *                 type: string
- *                 default: RPG
+ *               developers_id:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: developer123
+ *               categories:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: RPG
  *               downloadable:
  *                 type: boolean
  *                 default: true
