@@ -8,25 +8,7 @@ export const getAboutUsData = async (req, res) => {
       return res.status(404).json({ error: "About Us data not found" });
     }
 
-    // Extracting data from the aboutUsData object as needed
-    const {
-      branchesData,
-      topContributionsAndProjects,
-      ourTeamsData,
-      specialThanksData,
-      boardMembersData,
-    } = aboutUsData;
-
-    // Constructing the expected form
-    const expectedFormData = {
-      boardMembersData,
-      branchesData,
-      ourTeamsData,
-      specialThanksData,
-      topContributionsAndProjects,
-    };
-
-    res.status(200).json(expectedFormData);
+    res.status(200).json(aboutUsData);
   } catch (error) {
     res
       .status(500)
@@ -37,22 +19,22 @@ export const getAboutUsData = async (req, res) => {
 export const postAboutUsData = async (req, res) => {
   try {
     const {
+      boardMembersData,
       branchesData,
-      topContributionsAndProjects,
       ourTeamsData,
       specialThanksData,
-      boardMembersData,
+      topContributionsAndProjects,
     } = req.body;
 
     let existingAboutUsContent = await AboutUs.findOne();
 
     if (!existingAboutUsContent) {
       const newAboutUsModel = new AboutUs({
+        boardMembersData,
         branchesData,
-        topContributionsAndProjects,
         ourTeamsData,
         specialThanksData,
-        boardMembersData,
+        topContributionsAndProjects,
       });
 
       const savedAboutUsModel = await newAboutUsModel.save();

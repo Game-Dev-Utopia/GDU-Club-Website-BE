@@ -5,7 +5,8 @@ import * as controller from '../controllers/AboutUsController.js';
 
 /**
  * @openapi
- * /api/aboutus/getcontent:
+ * 
+ * /api/aboutus/getaboutus:
  *   get:
  *     tags:
  *       - About Us
@@ -20,12 +21,12 @@ import * as controller from '../controllers/AboutUsController.js';
  *         description: Server Error
  */
 
-aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
+aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
 
 
 /**
  * @openapi
- * /api/aboutus/updatecontent:
+ * /api/aboutus/addaboutus:
  *   post:
  *     tags:
  *       - About Us
@@ -37,169 +38,12 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *           schema:
  *             type: object
  *             required:
+ *               - boardMembersData
  *               - branchesData
- *               - topContributionsAndProjects
  *               - ourTeamsData
  *               - specialThanksData
- *               - headCouncilData
+ *               - topContributionsAndProjects
  *             properties:
- *               branchesData:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     title:
- *                       type: string
- *                     description:
- *                       type: string
- *                     data:
- *                       type: array
- *                       items:
- *                         type: object
- *                         properties:
- *                           name:
- *                             type: string
- *                           designation:
- *                             type: string
- *                           desc:
- *                             type: string
- *                           profileImageURL:
- *                             type: string
- *                           bgImageURL:
- *                             type: string
- *                           linkedin:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://linkedin.com/", "id"]
- *                           github:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://github.com/", "id"]
- *                           instagram:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://instagram.com/", "id"]
- *               topContributionsAndProjects:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     title:
- *                       type: string
- *                     description:
- *                       type: string
- *                     data:
- *                       type: array
- *                       items:
- *                         type: object
- *                         properties:
- *                           name:
- *                             type: string
- *                           designation:
- *                             type: string
- *                           desc:
- *                             type: string
- *                           profileImageURL:
- *                             type: string
- *                           bgImageURL:
- *                             type: string
- *                           linkedin:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://linkedin.com/", "id"]
- *                           github:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://github.com/", "id"]
- *                           instagram:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://instagram.com/", "id"]
- *               ourTeamsData:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     title:
- *                       type: string
- *                     description:
- *                       type: string
- *                     data:
- *                       type: array
- *                       items:
- *                         type: object
- *                         properties:
- *                           name:
- *                             type: string
- *                           designation:
- *                             type: string
- *                           desc:
- *                             type: string
- *                           profileImageURL:
- *                             type: string
- *                           bgImageURL:
- *                             type: string
- *                           linkedin:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://linkedin.com/", "id"]
- *                           github:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://github.com/", "id"]
- *                           instagram:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://instagram.com/", "id"]
- *               specialThanksData:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     title:
- *                       type: string
- *                     description:
- *                       type: string
- *                     data:
- *                       type: array
- *                       items:
- *                         type: object
- *                         properties:
- *                           name:
- *                             type: string
- *                           designation:
- *                             type: string
- *                           desc:
- *                             type: string
- *                           profileImageURL:
- *                             type: string
- *                           bgImageURL:
- *                             type: string
- *                           linkedin:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://linkedin.com/", "id"]
- *                           github:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://github.com/", "id"]
- *                           instagram:
- *                             type: array
- *                             items:
- *                               type: string
- *                             example: ["https://instagram.com/", "id"]
- * 
  *               boardMembersData:
  *                 type: array
  *                 items:
@@ -216,29 +60,191 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *                         properties:
  *                           name:
  *                             type: string
- *                           designation:
+ *                           bodies:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           responsibilities:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           intro:
  *                             type: string
- *                           desc:
+ *                           email:
+ *                            type: string
+ *                           contact:
+ *                            type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                               type: string
+ *                           github:
+ *                               type: string
+ *                           instagram:
+ *                               type: string
+ *               branchesData:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     description:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           bodies:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           responsibilities:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           intro:
+ *                             type: string
+ *                           email:
+ *                            type: string
+ *                           contact:
+ *                            type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                               type: string
+ *                           github:
+ *                               type: string
+ *                           instagram:
+ *                               type: string
+ *               ourTeamsData:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     description:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           bodies:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           responsibilities:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           intro:
+ *                             type: string
+ *                           email:
+ *                             type: string
+ *                           contact:
  *                             type: string
  *                           profileImageURL:
  *                             type: string
  *                           bgImageURL:
  *                             type: string
  *                           linkedin:
- *                             type: array
- *                             items:
  *                               type: string
- *                             example: ["https://linkedin.com/", "id"]
  *                           github:
- *                             type: array
- *                             items:
  *                               type: string
- *                             example: ["https://github.com/", "id"]
  *                           instagram:
+ *                               type: string
+ *               specialThanksData:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     description:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           bodies:
  *                             type: array
  *                             items:
  *                               type: string
- *                             example: ["https://instagram.com/", "id"]
+ *                           responsibilities:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           intro:
+ *                             type: string
+ *                           email:
+ *                            type: string
+ *                           contact:
+ *                            type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                               type: string
+ *                           github:
+ *                               type: string
+ *                           instagram:
+ *                               type: string
+ * 
+ *               topContributionsAndProjects:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     title:
+ *                       type: string
+ *                     description:
+ *                       type: string
+ *                     data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           bodies:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           responsibilities:
+ *                             type: array
+ *                             items:
+ *                               type: string
+ *                           intro:
+ *                             type: string
+ *                           email:
+ *                            type: string
+ *                           contact:
+ *                            type: string
+ *                           profileImageURL:
+ *                             type: string
+ *                           bgImageURL:
+ *                             type: string
+ *                           linkedin:
+ *                               type: string
+ *                           github:
+ *                               type: string
+ *                           instagram:
+ *                               type: string
  *     responses:
  *       '200':
  *         description: Updated or Created Successfully
@@ -248,6 +254,6 @@ aboutUsRouter.route('/getcontent').get(controller.getAboutUsData);
  *         description: Server Error
  */
 
-aboutUsRouter.route('/updatecontent').post(controller.postAboutUsData);
+aboutUsRouter.route('/addaboutus').post(controller.postAboutUsData);
 
 export default aboutUsRouter;

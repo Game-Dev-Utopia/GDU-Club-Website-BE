@@ -1,7 +1,50 @@
 import mongoose, { Schema, model } from "mongoose";
 
+const membersData = {
+  name: {
+    type: String,
+    required: true
+  },
+  bodies: [{
+    type: String,
+    required: true
+  }],
+  responsibilities: [{
+    type: String,
+    required: true
+  }],
+  intro: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  contact: {
+    type: String,
+    minlength: 5,
+    maxlength: 15,
+    required: true,
+  },
+  profileImageURL: {
+    type: String,
+  },
+  bgImageURL: {
+    type: String,
+  },
+  linkedin: {
+    type: String,
+  },
+  github: {
+    type: String
+  },
+  instagram: {
+    type: String,
+  }
+};
 
-const boardMembersSchema = Schema({
+const sectionData = {
   title: {
     type: String,
     required: true
@@ -10,252 +53,14 @@ const boardMembersSchema = Schema({
     type: String,
     required: false
   },
-  data: [{
-    name: {
-      type: String,
-      required: true
-    },
-    designation: {
-      type: String,
-      required: true
-    },
-    desc: {
-      type: String,
-      required: true
-    },
-    profileImageURL: {
-      type: String,
-      required: true
-    },
-    bgImageURL: {
-      type: String,
-      required: true
-    },
-    linkedin: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    github: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    instagram: [{
-      type: String,
-    }, {
-      type: String
-    }]
-  }]
-});
+  data: [membersData]
+};
 
-
-const branchSchema = Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: false
-  },
-  data: [{
-    name: {
-      type: String,
-      required: true
-    },
-    designation: {
-      type: String,
-      required: true
-    },
-    desc: {
-      type: String,
-      required: true
-    },
-    profileImageURL: {
-      type: String,
-      required: true
-    },
-    bgImageURL: {
-      type: String,
-      required: true
-    },
-    linkedin: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    github: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    instagram: [{
-      type: String,
-
-    }, {
-      type: String
-    }]
-  }]
-});
-
-const topContributionsAndProjectsSchema = Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: false
-  },
-  data: [{
-    name: {
-      type: String,
-      required: true
-    },
-    designation: {
-      type: String,
-      required: true
-    },
-    desc: {
-      type: String,
-      required: true
-    },
-    profileImageURL: {
-      type: String,
-      required: true
-    },
-    bgImageURL: {
-      type: String,
-      required: true
-    },
-    linkedin: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    github: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    instagram: [{
-      type: String,
-
-    }, {
-      type: String
-    }]
-  }]
-});
-
-const OurTeamsSchema = Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: false
-  },
-  data: [{
-    name: {
-      type: String,
-      required: true
-    },
-    designation: {
-      type: String,
-      required: true
-    },
-    desc: {
-      type: String,
-      required: true
-    },
-    profileImageURL: {
-      type: String,
-      required: true
-    },
-    bgImageURL: {
-      type: String,
-      required: true
-    },
-    linkedin: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    github: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    instagram: [{
-      type: String,
-
-    }, {
-      type: String
-    }]
-  }]
-});
-
-const specialThanksSchema = Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: false
-  },
-  data: [{
-    name: {
-      type: String,
-      required: true
-    },
-    designation: {
-      type: String,
-      required: true
-    },
-    desc: {
-      type: String,
-      required: true
-    },
-    profileImageURL: {
-      type: String,
-      required: true
-    },
-    bgImageURL: {
-      type: String,
-      required: true
-    },
-    linkedin: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    github: [{
-      type: String,
-      
-    }, {
-      type: String
-    }],
-    instagram: [{
-      type: String,
-
-    }, {
-      type: String
-    }]
-  }]
-});
-
+const boardMembersSchema = Schema(sectionData);
+const branchSchema = Schema(sectionData);
+const topContributionsAndProjectsSchema = Schema(sectionData);
+const OurTeamsSchema = Schema(sectionData);
+const specialThanksSchema = Schema(sectionData);
 
 const aboutUsSchema = new Schema({
   boardMembersData: [boardMembersSchema],
