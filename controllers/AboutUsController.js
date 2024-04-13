@@ -4,11 +4,23 @@ export const getAboutUsData = async (req, res) => {
   try {
     const aboutUsData = await AboutUs.findOne(); // Assuming there's only one document in the collection
 
-    if (!aboutUsData) {
-      return res.status(404).json({ error: "About Us data not found" });
-    }
+        if (!aboutUsData) {
+            return res.status(404).json({ error: "About Us data not found" });
+        }
 
-    res.status(200).json(aboutUsData);
+        // Extracting data from the aboutUsData object as needed
+        const { branchesData, topContributionsAndProjects, ourTeamsData, specialThanksData, boardMembersData } = aboutUsData;
+
+        // Constructing the expected form
+        const expectedFormData = {
+            branchesData,
+            topContributionsAndProjects,
+            ourTeamsData,
+            specialThanksData,
+            boardMembersData
+        };
+
+        res.status(200).json(expectedFormData);
   } catch (error) {
     res
       .status(500)
