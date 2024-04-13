@@ -5,10 +5,8 @@ export async function addGame(req, res) {
     const {
       title,
       description,
-      features,
-      trailer_video,
-      game_image,
-      thumbnails,
+      media,
+      thumbnail,
       achievements,
       system_requirements,
       download_url,
@@ -43,10 +41,8 @@ export async function addGame(req, res) {
     const newGame = new GameModel({
       title,
       description,
-      features,
-      trailer_video,
-      game_image,
-      thumbnails,
+      media,
+      thumbnail,
       achievements: [
         {
           image: achievements.image,

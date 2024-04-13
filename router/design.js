@@ -21,7 +21,6 @@ import * as controller from '../controllers/designController.js';
  *             required:
  *               - title
  *               - description
- *               - features
  *               - designs
  *             properties:
  *               title:
