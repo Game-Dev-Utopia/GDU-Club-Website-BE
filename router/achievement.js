@@ -27,8 +27,10 @@ import * as controller from '../controllers/achievementController.js';
  *                 type: string
  *                 default: Sample achievement
  *               description:
- *                 type: string
- *                 default: A description 
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: a description item
  *               date:
  *                 type: date
  *                 default: Thu Feb 29 2024 20:45:04 GMT+0530 (India Standard Time)
@@ -68,8 +70,10 @@ import * as controller from '../controllers/achievementController.js';
  *                 type: string
  *                 default: Sample achievement
  *               description:
- *                 type: string
- *                 default: A description 
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   default: a description item
  *               date:
  *                 type: date
  *                 default: Thu Feb 29 2024 20:45:04 GMT+0530 (India Standard Time)

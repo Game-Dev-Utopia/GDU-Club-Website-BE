@@ -98,7 +98,7 @@ timelineRouter.route("/getalltimelines").get(controller.getAllTimeline);
  *      500:
  *        description: Server Error
  */
-timelineRouter.route("/deletetimeline/:timelienId").delete(controller.deleteTimelineEvent);
+timelineRouter.route("/deletetimeline/:timelineId").delete(controller.deleteTimelineEvent);
 
 
 /** UPDATE Methods */

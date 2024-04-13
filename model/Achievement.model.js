@@ -5,10 +5,7 @@ const achievementsSchema = new Schema({
         type: String,
         required: [true, "Please provide title"],
     },
-    description: {
-        type: String,
-        required: [true, "Please provide description"],
-    },
+    description: [String],
     date: {
         type: Date,
         required: [true, "Please provide date"],
