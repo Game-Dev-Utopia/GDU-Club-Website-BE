@@ -21,7 +21,7 @@ const sponserRouter = express.Router();
  *               name:
  *                 type: string
  *                 default: First Sponser
- *               founder:
+ *               owner:
  *                 type: string
  *                 default: founder name
  *               email:
@@ -85,7 +85,7 @@ const sponserRouter = express.Router();
  *               name:
  *                 type: string
  *                 default: First Sponser
- *               founder:
+ *               owner:
  *                 type: string
  *                 default: founder name
  *               email:
