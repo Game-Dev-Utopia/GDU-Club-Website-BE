@@ -3,34 +3,35 @@ import { Schema, model } from "mongoose";
 const SponsersSchema = new Schema({
     name: {
         type: String,
-        required: true
+    },
+    owner:{
+        type:String
     },
     email: {
-        type: String,
-        required: true
+        type: String
+
     },
     phone: {
-        type: String,
-        required: true
+        type: String
+
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     logo: {
-        type: String,
-        required: true
+        type: String
+
     },
     link: {
-        type: String,
-        required: true
+        type: String
+
     },
     type: {
-        type: String,
+        type: String
     },
     endDate: {
-        type: Date,
-        required: true
+        type: Date
+
     }
 },
     {
