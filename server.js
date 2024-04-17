@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import './utils/cron.js'
 import connect from "./database/conn.js";
 import userRouter from "./router/user.js";
 import swaggerDocs from "./swagger.js";
@@ -29,6 +30,9 @@ app.get("/", (req, res) => {
   res.status(201).json("Navigate to /docs for swagger API documentation");
 });
 
+app.get('/ping',(req,res)=>{
+  res.send('pong');
+})
 
 /** api routes */
 app.use("/api/user", userRouter);
