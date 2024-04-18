@@ -102,3 +102,14 @@ export async function deleteGame(req, res) {
     return res.status(401).send({ error });
   }
 }
+
+
+export async function getHomePageGames(req, res) {
+  try {
+    const games = await GameModel.find().limit(7);
+
+    res.status(200).json({ games });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+}

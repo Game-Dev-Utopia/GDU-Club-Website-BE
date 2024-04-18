@@ -208,6 +208,7 @@ import * as controller from '../controllers/designController.js';
 
 designRouter.route("/adddesign").post(controller.addDesign);
 designRouter.route("/getdesigns").get(controller.getDesigns);
+designRouter.route("/homepagedesigns").get(controller.getHomePageDesigns);
 designRouter.route("/updatedesign").patch(controller.updateDesign);
 designRouter.route("/updatedesignassets").patch(controller.updateDesignAssets);
 designRouter.route("/:id").delete(controller.deleteDesign);
