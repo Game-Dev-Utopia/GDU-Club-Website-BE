@@ -106,7 +106,7 @@ export async function deleteGame(req, res) {
 
 export async function getHomePageGames(req, res) {
   try {
-    const games = await GameModel.find().limit(7);
+    const games = await GameModel.find().limit(7).populate('developer_ids');
 
     res.status(200).json({ games });
   } catch (error) {
