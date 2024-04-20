@@ -6,12 +6,11 @@ const membersData = {
     required: true
   },
   bodies: [{
-    type: String,
-    required: true
-  }],
-  responsibilities: [{
-    type: String,
-    required: true
+    name : String ,
+    responsibilities: [{
+      type: String,
+      required: true
+    }],
   }],
   intro: {
     type: String,
