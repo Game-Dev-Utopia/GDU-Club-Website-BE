@@ -13,11 +13,11 @@ export const getAboutUsData = async (req, res) => {
 
         // Constructing the expected form
         const expectedFormData = {
+            boardMembersData,
             branchesData,
-            topContributionsAndProjects,
             ourTeamsData,
             specialThanksData,
-            boardMembersData
+            topContributionsAndProjects,
         };
 
         res.status(200).json(expectedFormData);
