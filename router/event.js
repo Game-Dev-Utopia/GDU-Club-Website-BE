@@ -197,7 +197,7 @@ eventRouter.route("/addevent").post(controller.addEvent);
 
 
 eventRouter.route("/getallevents").get(controller.getAllEvents);
-eventRouter.route("/:id").get(controller.getEventById);
+eventRouter.route("/getevent/:id").get(controller.getEventById);
 
 /** DELETE Methods */
 /**

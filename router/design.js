@@ -212,6 +212,6 @@ designRouter.route("/homepagedesigns").get(controller.getHomePageDesigns);
 designRouter.route("/updatedesign").patch(controller.updateDesign);
 designRouter.route("/updatedesignassets").patch(controller.updateDesignAssets);
 designRouter.route("/:id").delete(controller.deleteDesign);
-
+designRouter.route("/getdesign/:id").get(controller.getDesignById);
 
 export default designRouter;

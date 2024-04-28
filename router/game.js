@@ -132,6 +132,7 @@ gameRouter.route("/addgame").post(controller.addGame);
  *         description: Server Error
  */
 gameRouter.route("/getallgames").get(controller.getAllGames);
+gameRouter.route("/getgame/:id").get(controller.getGameById);
 gameRouter.route("/homepagegames").get(controller.getHomePageGames);
 
 
