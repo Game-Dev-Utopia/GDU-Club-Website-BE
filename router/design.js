@@ -72,6 +72,16 @@ import * as controller from '../controllers/designController.js';
  *   get:
  *     tags:
  *       - Design Management
+ *     summary: Get top 14 home page Designs
+ *     responses:
+ *       201:
+ *         description: Fetched
+ *       500:
+ *         description: Server Error
+ * /api/design/homepagedesigns:
+ *   get:
+ *     tags:
+ *       - Design Management
  *     summary: Get all Designs
  *     responses:
  *       201:
