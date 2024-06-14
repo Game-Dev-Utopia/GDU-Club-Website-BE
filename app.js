@@ -3,7 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import userRouter from "./router/user.js";
-//import swaggerDocs from "./swagger.js";
+import swaggerDocs from "./swagger.js";
 import gameRouter from "./router/game.js";
 import designRouter from "./router/design.js";
 import timelineRouter from "./router/timeline.js";
@@ -45,7 +45,7 @@ app.use("/api/event", eventRouter)
 app.use("/api/hero", heroRouter);
 app.use("/api/developer", developerRouter);
 
-//swaggerDocs(app, port);
+swaggerDocs(app, port);
 
 (async () => {
   await connect().catch(err => {

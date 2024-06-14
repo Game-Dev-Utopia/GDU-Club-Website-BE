@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/gdu-backend-apis/prod/1713377550638-2024-04-17T18:12:30.638Z/gdu-backend-apis.zip"
+          "S3Key": "serverless/gdu-backend-apis/prod/1718369342295-2024-06-14T12:49:02.295Z/gdu-backend-apis.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs20.x",
@@ -180,14 +180,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersion4WbubHnpHUkmZ8Mfofv4jqt1DAvc2VdNa7jThY": {
+    "AppLambdaVersionuKW9prMLS0hwCIUXRe1Qtl5E9Nihm1QW93ZpkPNQ0Tc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "hCmUNO3Y3UWi4T1YuufeR1rpN97BLzt3dV774snO9tI="
+        "CodeSha256": "TCqu+wfAxlzoz8v8uJ13hsRQQlZ3NZlrVlIfdDlAKpw="
       }
     },
     "ApiGatewayRestApi": {
@@ -312,7 +312,7 @@
         "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1713377524504": {
+    "ApiGatewayDeployment1718369313435": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -375,7 +375,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersion4WbubHnpHUkmZ8Mfofv4jqt1DAvc2VdNa7jThY"
+        "Ref": "AppLambdaVersionuKW9prMLS0hwCIUXRe1Qtl5E9Nihm1QW93ZpkPNQ0Tc"
       },
       "Export": {
         "Name": "sls-gdu-backend-apis-prod-AppLambdaFunctionQualifiedArn"
