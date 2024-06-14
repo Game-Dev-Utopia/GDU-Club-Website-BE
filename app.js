@@ -26,7 +26,7 @@ app.disable("x-powered-by");
 const port = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
-  res.status(201).json("home page");
+  res.status(201).json("home page serverless deploy");
 });
 
 
