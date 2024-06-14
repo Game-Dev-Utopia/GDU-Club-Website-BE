@@ -84,6 +84,18 @@ export async function getAllGames(req, res) {
   }
 }
 
+export const getGameById = async (req, res) => {
+  try {
+    const game = await GameModel.findById(req.params.id).populate('developer_ids');
+    if (game) {
+      res.status(200).json(game);
+    } else {
+      res.status(404).json({ error: "Game not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+};
 
 export async function deleteGame(req, res) {
   try {
@@ -102,3 +114,16 @@ export async function deleteGame(req, res) {
     return res.status(401).send({ error });
   }
 }
+
+
+export async function getHomePageGames(req, res) {
+  try {
+    const games = await GameModel.find().limit(7).populate('developer_ids');
+
+    res.status(200).json({ games });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+}
+
+

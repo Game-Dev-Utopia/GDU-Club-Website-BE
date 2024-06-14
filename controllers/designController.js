@@ -1,5 +1,6 @@
 import Design from "../model/Design.model.js";
 import Logger from "../logger/Logger.js";
+import log from "node-gyp/lib/log.js";
 
 export async function addDesign(req, res) {
     try {
@@ -50,11 +51,27 @@ export const getDesigns = async (req, res) => {
     }
 };
 
+export const getDesignById = async (req, res) => {
+    try {
+        const design = await Design.findById(req.params.id).populate('developer_ids');
+        console.log(design);
+        if (design) {
+            Logger(': Response 👍 :', 'Design retrieved successfully', req.url, req.method);
+            res.status(200).json(design);
+        } else {
+            Logger(': Response 👎 :', 'Design not found', req.url, req.method);
+            res.status(404).json({ error: "Design not found" });
+        }
+    } catch (error) {
+        Logger(': Request 🙏 :', `Error occurred while fetching design: ${error.message}`, req.url, req.method);
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
+    }
+};
 
 
 export const updateDesign = async (req, res) => {
     try {
-        const { id, title, description,designs, achievements,download_url, developer_ids , likeCount, shareCount} = req.body;
+        const { id, title, description, designs, achievements, download_url, developer_ids, likeCount, shareCount } = req.body;
         const design = await Design.findById(id);
         if (design) {
             design.title = title;
@@ -92,7 +109,7 @@ export const deleteDesign = async (req, res) => {
 
 export const updateDesignAssets = async (req, res) => {
     try {
-        const { id, designs , download_url } = req.body;
+        const { id, designs, download_url } = req.body;
         const oldDesign = await Design.findById(id);
         if (!oldDesign) {
             return res.status(404).json({ error: "Design not found" });
@@ -109,5 +126,14 @@ export const updateDesignAssets = async (req, res) => {
         res.status(200).json({ msg: "Design assets updated successfully", design: updatedDesign });
     } catch (error) {
 
+    }
+}
+
+export const getHomePageDesigns = async (req, res) => {
+    try {
+        const designs = await Design.find().limit(14).populate('developer_ids');
+        res.status(200).json(designs);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
 }

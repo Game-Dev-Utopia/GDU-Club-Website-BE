@@ -72,6 +72,16 @@ import * as controller from '../controllers/designController.js';
  *   get:
  *     tags:
  *       - Design Management
+ *     summary: Get top 14 home page Designs
+ *     responses:
+ *       201:
+ *         description: Fetched
+ *       500:
+ *         description: Server Error
+ * /api/design/homepagedesigns:
+ *   get:
+ *     tags:
+ *       - Design Management
  *     summary: Get all Designs
  *     responses:
  *       201:
@@ -208,9 +218,10 @@ import * as controller from '../controllers/designController.js';
 
 designRouter.route("/adddesign").post(controller.addDesign);
 designRouter.route("/getdesigns").get(controller.getDesigns);
+designRouter.route("/homepagedesigns").get(controller.getHomePageDesigns);
 designRouter.route("/updatedesign").patch(controller.updateDesign);
 designRouter.route("/updatedesignassets").patch(controller.updateDesignAssets);
 designRouter.route("/:id").delete(controller.deleteDesign);
-
+designRouter.route("/getdesign/:id").get(controller.getDesignById);
 
 export default designRouter;

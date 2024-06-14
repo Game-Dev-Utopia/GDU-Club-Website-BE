@@ -63,11 +63,14 @@ aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
  *                           bodies:
  *                             type: array
  *                             items:
- *                               type: string
- *                           responsibilities:
- *                             type: array
- *                             items:
- *                               type: string
+ *                               type: object
+ *                               properties:
+ *                                 name:
+ *                                   type: string
+ *                                 responsibilities:
+ *                                   type: array
+ *                                   items:
+ *                                     type: string
  *                           intro:
  *                             type: string
  *                           email:
@@ -103,11 +106,14 @@ aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
  *                           bodies:
  *                             type: array
  *                             items:
- *                               type: string
- *                           responsibilities:
- *                             type: array
- *                             items:
- *                               type: string
+ *                               type: object
+ *                               properties:
+ *                                 name:
+ *                                   type: string
+ *                                 responsibilities:
+ *                                   type: array
+ *                                   items:
+ *                                     type: string
  *                           intro:
  *                             type: string
  *                           email:
@@ -143,11 +149,14 @@ aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
  *                           bodies:
  *                             type: array
  *                             items:
- *                               type: string
- *                           responsibilities:
- *                             type: array
- *                             items:
- *                               type: string
+ *                               type: object
+ *                               properties:
+ *                                 name:
+ *                                   type: string
+ *                                 responsibilities:
+ *                                   type: array
+ *                                   items:
+ *                                     type: string
  *                           intro:
  *                             type: string
  *                           email:
@@ -183,11 +192,14 @@ aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
  *                           bodies:
  *                             type: array
  *                             items:
- *                               type: string
- *                           responsibilities:
- *                             type: array
- *                             items:
- *                               type: string
+ *                               type: object
+ *                               properties:
+ *                                 name:
+ *                                   type: string
+ *                                 responsibilities:
+ *                                   type: array
+ *                                   items:
+ *                                     type: string
  *                           intro:
  *                             type: string
  *                           email:
@@ -224,11 +236,14 @@ aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
  *                           bodies:
  *                             type: array
  *                             items:
- *                               type: string
- *                           responsibilities:
- *                             type: array
- *                             items:
- *                               type: string
+ *                               type: object
+ *                               properties:
+ *                                 name:
+ *                                   type: string
+ *                                 responsibilities:
+ *                                   type: array
+ *                                   items:
+ *                                     type: string
  *                           intro:
  *                             type: string
  *                           email:

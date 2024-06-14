@@ -17,16 +17,13 @@ const sponserRouter = express.Router();
  *             type: object
  *             required:
  *               - name
- *               - email
- *               - phone
- *               - logo
- *               - link
- *               - description
- *               - endDate
  *             properties:
  *               name:
  *                 type: string
  *                 default: First Sponser
+ *               owner:
+ *                 type: string
+ *                 default: founder name
  *               email:
  *                 type: string
  *                 default: sponser@gmail.com
@@ -81,12 +78,6 @@ const sponserRouter = express.Router();
  *             required:
  *               - id
  *               - name
- *               - email
- *               - phone
- *               - logo
- *               - link
- *               - description
- *               - endDate
  *             properties:
  *               id:
  *                  type: string
@@ -94,6 +85,9 @@ const sponserRouter = express.Router();
  *               name:
  *                 type: string
  *                 default: First Sponser
+ *               owner:
+ *                 type: string
+ *                 default: founder name
  *               email:
  *                 type: string
  *                 default: sponser@gmail.com
