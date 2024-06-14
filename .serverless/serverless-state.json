@@ -174,7 +174,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/gdu-backend-apis/prod/1718369342295-2024-06-14T12:49:02.295Z/gdu-backend-apis.zip"
+                "S3Key": "serverless/gdu-backend-apis/prod/1718370997440-2024-06-14T13:16:37.440Z/gdu-backend-apis.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs20.x",
@@ -324,7 +324,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1718369313435": {
+          "ApiGatewayDeployment1718370970978": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -542,7 +542,7 @@
     "artifact": "D:\\gdu\\aws-lambda\\GDU-Club-Website-BE\\.serverless\\gdu-backend-apis.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/gdu-backend-apis/prod/1718369342295-2024-06-14T12:49:02.295Z",
+    "artifactDirectoryName": "serverless/gdu-backend-apis/prod/1718370997440-2024-06-14T13:16:37.440Z",
     "artifact": "gdu-backend-apis.zip"
   }
 }
