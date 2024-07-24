@@ -2,6 +2,10 @@ import TimelineModel from "../model/Timeline.model.js";
 
 export async function addTimelineEvent(req, res) {
   try {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
     const { title, details, date, altName, image } = req.body;
 
     const existTimelineTitle = TimelineModel.findOne({ title });
@@ -46,31 +50,34 @@ export async function addTimelineEvent(req, res) {
 }
 
 export async function getAllTimeline(req, res) {
-    try {
-      const timeline = await TimelineModel.find();
-      res.status(200).json({ timeline });
-    } catch (error) {
-      res.status(500).json({ error: "Internal Server Error", details: error.message });
+  try {
+    const timeline = await TimelineModel.find();
+    res.status(200).json({ timeline });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error", details: error.message });
+  }
+}
+
+
+export async function deleteTimelineEvent(req, res) {
+  try {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+      return res.status(401).json({ error: "Unauthorized" });
     }
+    const { timelineId } = req.params;
+
+    if (timelineId) {
+      TimelineModel.deleteOne({ _id: timelineId }, function (err, data) {
+        if (err) throw err;
+
+        return res.status(201).send({ msg: "Record Deleted...!" });
+      });
+    } else {
+      return res.status(401).send({ error: "Timeline Not Found...!" });
+    }
+  } catch (error) {
+    return res.status(401).send({ error });
   }
+}
 
-
-  export async function deleteTimelineEvent(req, res) {
-    try {
-        const { timelineId } = req.params;
-    
-        if (timelineId) {
-          TimelineModel.deleteOne({ _id: timelineId }, function (err, data) {
-            if (err) throw err;
-    
-            return res.status(201).send({ msg: "Record Deleted...!" });
-          });
-        } else {
-          return res.status(401).send({ error: "Timeline Not Found...!" });
-        }
-      } catch (error) {
-        return res.status(401).send({ error });
-      }
-  }
-
-  

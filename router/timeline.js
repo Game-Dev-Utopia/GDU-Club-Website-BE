@@ -46,7 +46,7 @@ import * as controller from "../controllers/timelineController.js";
  *       500:
  *         description: Server Error
  */
-timelineRouter.route("/addtimeline").post(controller.addTimelineEvent);
+timelineRouter.route("/addtimeline").post(Auth, controller.addTimelineEvent);
 
 
 /** GET Methods */
@@ -98,7 +98,7 @@ timelineRouter.route("/getalltimelines").get(controller.getAllTimeline);
  *      500:
  *        description: Server Error
  */
-timelineRouter.route("/deletetimeline/:timelineId").delete(controller.deleteTimelineEvent);
+timelineRouter.route("/deletetimeline/:timelineId").delete(Auth, controller.deleteTimelineEvent);
 
 
 /** UPDATE Methods */

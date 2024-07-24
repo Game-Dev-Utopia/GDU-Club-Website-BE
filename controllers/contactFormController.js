@@ -1,15 +1,15 @@
 import Form from "../model/Form.model.js";
 
 export const getForm = async (req, res) => {
-        try {
-            const forms = await Form.find();
-            res.status(200).json(forms);
-        } catch (error) {
-            res.status(500).json({ error: "Internal Server Error", details: error.message });
-        }
+    try {
+        const forms = await Form.find();
+        res.status(200).json(forms);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
+}
 
-    export async function addFormResponse(req, res) {
+export async function addFormResponse(req, res) {
     try {
         const {
             formName,
@@ -32,6 +32,10 @@ export const getForm = async (req, res) => {
 // Function to delete all form Proposals
 export async function clearAllContact(req, res) {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         await Form.deleteMany(); // Delete all documents from BusinessProposal collection
 
 

@@ -64,8 +64,8 @@ import * as controller from "../controllers/contactFormController.js";
  *         description: Server Error
  */
 
-contactFormRouter.route("/getform").get(controller.getForm);
-contactFormRouter.route("/addform").post(controller.addFormResponse);
-contactFormRouter.route("/deleteform").delete(controller.clearAllContact);
+contactFormRouter.route("/getform").get(Auth, controller.getForm);
+contactFormRouter.route("/addform").post(Auth, controller.addFormResponse);
+contactFormRouter.route("/deleteform").delete(Auth, controller.clearAllContact);
 
 export default contactFormRouter;

@@ -3,6 +3,10 @@ import { Achievement, Top3Achievements } from '../model/Achievement.model.js';
 
 export const addAchievement = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const { title, description, date, image, ranked, rank } = req.body;
         if (!title || !description || !date) {
             return res.status(400).json({ error: "Please provide correct details" })
@@ -13,7 +17,7 @@ export const addAchievement = async (req, res) => {
             description,
             date,
             image,
-            ranked,rank
+            ranked, rank
         });
 
         const savedAchievement = await newAchievement.save();
@@ -26,6 +30,10 @@ export const addAchievement = async (req, res) => {
 
 export const addAchievementToTop3 = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const { title, description, date, image, ranked, rank } = req.body;
         if (!title || !description || !date) {
             return res.status(400).json({ error: "Please provide correct details" })
@@ -109,6 +117,10 @@ export const getAchievements = async (req, res) => {
 
 export const updateAchievement = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const { id, title, description, date, image, ranked, rank } = req.body;
 
         const updatedAchievement = await Achievement.findByIdAndUpdate(id, {
@@ -126,6 +138,10 @@ export const updateAchievement = async (req, res) => {
 
 export const deleteAchievement = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const { id } = req.body;
         const deletedAchievement = await Achievement.findByIdAndDelete(id);
         res.status(200).json({ msg: "Achievement deleted successfully", achievement: deletedAchievement });

@@ -1,6 +1,10 @@
 import Sponsers from "../model/Sponsers.model.js";
 
 export const addSponser = async (req, res) => {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
     const sponser = req.body;
     const newSponser = new Sponsers(sponser);
     try {
@@ -21,6 +25,10 @@ export const getSponsers = async (req, res) => {
 }
 
 export const updateSponser = async (req, res) => {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
     const { id } = req.body;
     const sponser = req.body;
     const sponserExist = await Sponsers.findById(id);
@@ -32,6 +40,10 @@ export const updateSponser = async (req, res) => {
 }
 
 export const deleteSponser = async (req, res) => {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
     const { id } = req.body;
     const sponserExist = await Sponsers.findById(id);
     if (!sponserExist) {

@@ -58,7 +58,7 @@ import * as controller from "../controllers/developerController.js";
  *         description: Server Error
  */
 
-developerRouter.route('/adddeveloper').post(controller.addDeveloper);
+developerRouter.route('/adddeveloper').post(Auth, controller.addDeveloper);
 
 /** GET Methods */
 /**
@@ -105,7 +105,7 @@ developerRouter.route("/getalldevelopers").get(controller.getDevelopers);
  *      500:
  *        description: Server Error
  */
-developerRouter.route("/deletedeveloper/:devId").delete(controller.deleteDeveloper);
+developerRouter.route("/deletedeveloper/:devId").delete(Auth, controller.deleteDeveloper);
 
 /**
  * @openapi
@@ -166,6 +166,6 @@ developerRouter.route("/deletedeveloper/:devId").delete(controller.deleteDevelop
  *       500:
  *         description: Server Error
  */
-developerRouter.route('/update/:devId').patch(controller.updateDeveloper);
+developerRouter.route('/update/:devId').patch(Auth, controller.updateDeveloper);
 
 export default developerRouter;

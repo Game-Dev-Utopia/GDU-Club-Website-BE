@@ -21,7 +21,7 @@ import * as controller from '../controllers/AboutUsController.js';
  *         description: Server Error
  */
 
-aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
+aboutUsRouter.route('/getaboutus').get(Auth, controller.getAboutUsData);
 
 
 /**
@@ -269,6 +269,6 @@ aboutUsRouter.route('/getaboutus').get(controller.getAboutUsData);
  *         description: Server Error
  */
 
-aboutUsRouter.route('/addaboutus').post(controller.postAboutUsData);
+aboutUsRouter.route('/addaboutus').post(Auth, controller.postAboutUsData);
 
 export default aboutUsRouter;

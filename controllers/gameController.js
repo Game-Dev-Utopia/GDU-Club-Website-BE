@@ -2,6 +2,10 @@ import GameModel from "../model/Game.model.js";
 
 export async function addGame(req, res) {
   try {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
     const {
       title,
       description,
@@ -76,7 +80,7 @@ export async function addGame(req, res) {
 export async function getAllGames(req, res) {
   try {
     const games = await GameModel.find().populate('developer_ids');
-    console.log(games);
+    // console.log(games);
 
     res.status(200).json({ games });
   } catch (error) {
@@ -99,6 +103,10 @@ export const getGameById = async (req, res) => {
 
 export async function deleteGame(req, res) {
   try {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
     const { gameId } = req.params;
 
     if (gameId) {

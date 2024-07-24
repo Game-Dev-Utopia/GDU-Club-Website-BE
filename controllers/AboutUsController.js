@@ -3,24 +3,23 @@ import AboutUs from "../model/AboutUs.model.js";
 export const getAboutUsData = async (req, res) => {
   try {
     const aboutUsData = await AboutUs.findOne(); // Assuming there's only one document in the collection
+    if (!aboutUsData) {
+      return res.status(404).json({ error: "About Us data not found" });
+    }
 
-        if (!aboutUsData) {
-            return res.status(404).json({ error: "About Us data not found" });
-        }
+    // Extracting data from the aboutUsData object as needed
+    const { branchesData, topContributionsAndProjects, ourTeamsData, specialThanksData, boardMembersData } = aboutUsData;
 
-        // Extracting data from the aboutUsData object as needed
-        const { branchesData, topContributionsAndProjects, ourTeamsData, specialThanksData, boardMembersData } = aboutUsData;
+    // Constructing the expected form
+    const expectedFormData = {
+      boardMembersData,
+      branchesData,
+      ourTeamsData,
+      specialThanksData,
+      topContributionsAndProjects,
+    };
 
-        // Constructing the expected form
-        const expectedFormData = {
-            boardMembersData,
-            branchesData,
-            ourTeamsData,
-            specialThanksData,
-            topContributionsAndProjects,
-        };
-
-        res.status(200).json(expectedFormData);
+    res.status(200).json(expectedFormData);
   } catch (error) {
     res
       .status(500)
@@ -30,6 +29,10 @@ export const getAboutUsData = async (req, res) => {
 
 export const postAboutUsData = async (req, res) => {
   try {
+    const roles = req.roles;
+    if (roles.lenght === 0 || !roles.includes('admin')) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
     const {
       boardMembersData,
       branchesData,

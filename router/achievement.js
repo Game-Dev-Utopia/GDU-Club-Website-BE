@@ -181,10 +181,10 @@ import * as controller from '../controllers/achievementController.js';
  *        description: Server Error
  */
 
-achievementRouter.route("/addachievement").post(controller.addAchievement)
-achievementRouter.route("/addachievementtop3").post(controller.addAchievementToTop3);
+achievementRouter.route("/addachievement").post(Auth, controller.addAchievement)
+achievementRouter.route("/addachievementtop3").post(Auth, controller.addAchievementToTop3);
 achievementRouter.route("/getachievements").get(controller.getAchievements)
-achievementRouter.route("/updateachievement").put(controller.updateAchievement)
-achievementRouter.route("/deleteachievement").delete(controller.deleteAchievement)
+achievementRouter.route("/updateachievement").put(Auth, controller.updateAchievement)
+achievementRouter.route("/deleteachievement").delete(Auth, controller.deleteAchievement)
 
 export default achievementRouter;

@@ -108,7 +108,7 @@ import * as controller from "../controllers/gameController.js";
  *       500:
  *         description: Server Error
  */
-gameRouter.route("/addgame").post(controller.addGame);
+gameRouter.route("/addgame").post(Auth, controller.addGame);
 
 
 /** GET Methods */
@@ -176,6 +176,6 @@ gameRouter.route("/homepagegames").get(controller.getHomePageGames);
  *      500:
  *        description: Server Error
  */
-gameRouter.route("/deletegame/:gameId").delete(controller.deleteGame);
+gameRouter.route("/deletegame/:gameId").delete(Auth, controller.deleteGame);
 
 export default gameRouter;

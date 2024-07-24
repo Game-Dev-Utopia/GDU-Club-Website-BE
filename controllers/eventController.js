@@ -3,6 +3,10 @@ import Logger from "../logger/Logger.js";
 
 export const addEvent = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const {
             eventName,
             eventDate,
@@ -58,7 +62,7 @@ export const getAllEvents = async (req, res) => {
     try {
         const events = await Event.find();
         Logger(': Response 👍 :', 'Events retrieved successfully', req.url, req.method);
-        res.status(200).json(events);
+        res.status(200).json({ events });
     } catch (error) {
         Logger(': Request 🙏 :', `Error occurred while fetching events: ${error.message}`, req.url, req.method);
         res.status(500).json({ error: "Internal Server Error", details: error.message });
@@ -86,6 +90,10 @@ export const getEventById = async (req, res) => {
 
 export const deleteEvent = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const { eventId } = req.params;
 
         if (eventId) {
@@ -103,17 +111,21 @@ export const deleteEvent = async (req, res) => {
 
 export const updateEvent = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const eventId = req.params.eventId;
         const updatedEventData = req.body;
-    
+
         const updatedEvent = await Event.findByIdAndUpdate(eventId, updatedEventData, { new: true });
-    
+
         if (!updatedEvent) {
-          return res.status(404).json({ error: "Event not found" });
+            return res.status(404).json({ error: "Event not found" });
         }
-    
+
         res.status(200).json(updatedEvent);
-      } catch (error) {
+    } catch (error) {
         res.status(500).json({ error: "Internal Server Error", details: error.message });
-      }
+    }
 }

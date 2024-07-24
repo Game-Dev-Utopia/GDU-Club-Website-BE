@@ -148,7 +148,7 @@ import * as controller from "../controllers/eventController.js";
  *         description: Server Error
  */
 
-eventRouter.route("/addevent").post(controller.addEvent);
+eventRouter.route("/addevent").post(Auth, controller.addEvent);
 
 
 /** GET Methods */
@@ -236,7 +236,7 @@ eventRouter.route("/getevent/:id").get(controller.getEventById);
  *               error: Internal Server Error
  *               details: Error details message
  */
-eventRouter.route("/deleteevent/:eventId").delete(controller.deleteEvent);
+eventRouter.route("/deleteevent/:eventId").delete(Auth, controller.deleteEvent);
 
 /**
  * @openapi
@@ -271,6 +271,6 @@ eventRouter.route("/deleteevent/:eventId").delete(controller.deleteEvent);
  *         description: Server Error
  */
 
-eventRouter.route("/updateevent/:eventId").patch(controller.updateEvent);
+eventRouter.route("/updateevent/:eventId").patch(Auth, controller.updateEvent);
 
 export default eventRouter;

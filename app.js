@@ -46,7 +46,9 @@ app.use("/api/hero", heroRouter);
 app.use("/api/developer", developerRouter);
 
 swaggerDocs(app, port);
-
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 (async () => {
   await connect().catch(err => {
     console.log("Invalid database connection...!", err.message);

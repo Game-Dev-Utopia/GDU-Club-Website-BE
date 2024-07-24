@@ -23,6 +23,10 @@ export const createHero = async (req, res) => {
     const hero = req.body;
     const newHero = new Hero(hero);
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         await newHero.save();
         res.status(201).json(newHero);
     } catch (error) {

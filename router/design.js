@@ -216,12 +216,12 @@ import * as controller from '../controllers/designController.js';
  *        description: Server Error
  */
 
-designRouter.route("/adddesign").post(controller.addDesign);
+designRouter.route("/adddesign").post(Auth, controller.addDesign);
 designRouter.route("/getdesigns").get(controller.getDesigns);
 designRouter.route("/homepagedesigns").get(controller.getHomePageDesigns);
-designRouter.route("/updatedesign").patch(controller.updateDesign);
-designRouter.route("/updatedesignassets").patch(controller.updateDesignAssets);
-designRouter.route("/:id").delete(controller.deleteDesign);
+designRouter.route("/updatedesign").patch(Auth, controller.updateDesign);
+designRouter.route("/updatedesignassets").patch(Auth, controller.updateDesignAssets);
+designRouter.route("/:id").delete(Auth, controller.deleteDesign);
 designRouter.route("/getdesign/:id").get(controller.getDesignById);
 
 export default designRouter;

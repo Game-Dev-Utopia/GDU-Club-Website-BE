@@ -1,5 +1,6 @@
 import * as controller from "../controllers/sponsersController.js"
 import express from "express";
+import Auth from "../middleware/auth.js";
 const sponserRouter = express.Router();
 
 /**
@@ -148,9 +149,9 @@ const sponserRouter = express.Router();
 
 */
 
-sponserRouter.route("/addsponser").post(controller.addSponser);
+sponserRouter.route("/addsponser").post(Auth, controller.addSponser);
 sponserRouter.route("/getsponsers").get(controller.getSponsers);
-sponserRouter.route("/updatesponser").put(controller.updateSponser);
-sponserRouter.route("/deletesponser").delete(controller.deleteSponser);
+sponserRouter.route("/updatesponser").put(Auth, controller.updateSponser);
+sponserRouter.route("/deletesponser").delete(Auth, controller.deleteSponser);
 
 export default sponserRouter

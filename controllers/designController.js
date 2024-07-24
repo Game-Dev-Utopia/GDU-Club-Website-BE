@@ -4,6 +4,10 @@ import log from "node-gyp/lib/log.js";
 
 export async function addDesign(req, res) {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const {
             title,
             description,
@@ -54,7 +58,7 @@ export const getDesigns = async (req, res) => {
 export const getDesignById = async (req, res) => {
     try {
         const design = await Design.findById(req.params.id).populate('developer_ids');
-        console.log(design);
+        // console.log(design);
         if (design) {
             Logger(': Response 👍 :', 'Design retrieved successfully', req.url, req.method);
             res.status(200).json(design);
@@ -71,6 +75,10 @@ export const getDesignById = async (req, res) => {
 
 export const updateDesign = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const { id, title, description, designs, achievements, download_url, developer_ids, likeCount, shareCount } = req.body;
         const design = await Design.findById(id);
         if (design) {
@@ -95,6 +103,10 @@ export const updateDesign = async (req, res) => {
 
 export const deleteDesign = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const design = await Design.findById(req.params.id);
         if (design) {
             await design.remove();
@@ -109,6 +121,10 @@ export const deleteDesign = async (req, res) => {
 
 export const updateDesignAssets = async (req, res) => {
     try {
+        const roles = req.roles;
+        if (roles.lenght === 0 || !roles.includes('admin')) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
         const { id, designs, download_url } = req.body;
         const oldDesign = await Design.findById(id);
         if (!oldDesign) {
