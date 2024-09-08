@@ -1,23 +1,29 @@
 import Form from "../model/Form.model.js";
 
 export const getForm = async (req, res) => {
-        try {
-            const forms = await Form.find();
-            res.status(200).json(forms);
-        } catch (error) {
-            res.status(500).json({ error: "Internal Server Error", details: error.message });
-        }
-    }
-
-    export async function addFormResponse(req, res) {
     try {
-        const {
+        const forms = await Form.find();
+        res.status(200).json(forms);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
+    }
+}
+
+export async function addFormResponse(req, res) {
+    try {
+        const { formName, response } = req.body;
+
+        // Check if a form with the same email in personalInfo already exists
+        const existingForm = await Form.findOne({ "response.personalinfo.email": response.personalinfo.email });
+
+        if (existingForm) {
+            return res.status(400).json({ error: "A form with this email already exists" });
+        }
+
+        // If no existing form found, create a new form
+        const newForm = new Form({
             formName,
             response
-        } = req.body;
-
-        const newForm = new Form({
-            formName, response
         });
 
         const savedForm = await newForm.save();
