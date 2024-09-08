@@ -23,7 +23,6 @@ const options = {
   apis: ["./router/*.js"],
 };
 const swaggerSpec = swaggerJsdoc(options);
-
 function swaggerDocs(app, port) {
   app.use(
     "/docs",
