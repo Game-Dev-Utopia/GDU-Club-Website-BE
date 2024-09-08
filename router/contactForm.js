@@ -34,6 +34,8 @@ import * as controller from "../controllers/contactFormController.js";
  *         description: Created
  *       500:
  *         description: Server Error
+ *       400:
+ *          description:duplicate
  * 
  * 
  * /api/form/getform:
@@ -46,6 +48,8 @@ import * as controller from "../controllers/contactFormController.js";
  *         description: Fetched
  *       500:
  *         description: Server Error
+ *       400:
+ *          description:duplicate
  * 
  */
 

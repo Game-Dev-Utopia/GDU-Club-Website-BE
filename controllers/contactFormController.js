@@ -12,9 +12,10 @@ export const getForm = async (req, res) => {
 export async function addFormResponse(req, res) {
     try {
         const { formName, response } = req.body;
+        console.log(response);
 
         // Check if a form with the same email in personalInfo already exists
-        const existingForm = await Form.findOne({ "response.personalinfo.email": response.personalinfo.email });
+        const existingForm = await Form.findOne({ "response.personalinfo.Email": response.personalinfo.email });
 
         if (existingForm) {
             return res.status(400).json({ error: "A form with this email already exists" });
