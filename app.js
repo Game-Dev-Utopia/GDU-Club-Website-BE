@@ -26,7 +26,7 @@ app.disable("x-powered-by");
 const port = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
-  res.status(201).json("home page serverless deploy !!");
+  res.status(201).json("home page serverless deploy");
 });
 
 
@@ -52,6 +52,9 @@ app.use("/api/developer", developerRouter);
 //     console.log("Invalid database connection...!", err.message);
 //   });
 // })();
+
+// // 
+// //
 
 connect()
   .then(() => {
