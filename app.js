@@ -26,7 +26,7 @@ app.disable("x-powered-by");
 const port = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
-  res.status(201).json("home page serverless deploy env added");
+  res.status(201).json("home page serverless deploy !!");
 });
 
 
@@ -55,5 +55,17 @@ swaggerDocs(app, port);
 
 // 
 //
+
+// connect()
+//   .then(() => {
+//     app.listen(port, () => {
+//       console.log(`Server connected to http://localhost:${port}`);
+//       swaggerDocs(app, port); // Initialize Swagger after the server is up
+//     });
+//   })
+//   .catch((error) => {
+//     console.log("Invalid database connection...!", error.message);
+//   });
+
 
 export default app;
