@@ -45,15 +45,27 @@ app.use("/api/event", eventRouter)
 app.use("/api/hero", heroRouter);
 app.use("/api/developer", developerRouter);
 
-swaggerDocs(app, port);
+// swaggerDocs(app, port);
 
-(async () => {
-  await connect().catch(err => {
-    console.log("Invalid database connection...!", err.message);
+// (async () => {
+//   await connect().catch(err => {
+//     console.log("Invalid database connection...!", err.message);
+//   });
+// })();
+
+// // 
+// //
+
+connect()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server connected to http://localhost:${port}`);
+      swaggerDocs(app, port); // Initialize Swagger after the server is up
+    });
+  })
+  .catch((error) => {
+    console.log("Invalid database connection...!", error.message);
   });
-})();
 
-// 
-//
 
 export default app;
