@@ -14,11 +14,14 @@ export async function addFormResponse(req, res) {
         const { formName, response } = req.body;
         console.log(response);
 
-        // Check if a form with the same email in personalInfo already exists
-        const existingForm = await Form.findOne({ "response.personalinfo.Email": response.personalinfo.Email });
+        // Check if a form with the same formName and email in personalInfo already exists
+        const existingForm = await Form.findOne({ 
+            formName: formName, 
+            "response.personalinfo.Email": response.personalinfo.Email 
+        });
 
         if (existingForm) {
-            return res.status(400).json({ error: "A form with this email already exists" });
+            return res.status(400).json({ error: "A form with this email already exists for the same form" });
         }
 
         // If no existing form found, create a new form
@@ -34,6 +37,7 @@ export async function addFormResponse(req, res) {
         res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
 }
+
 
 
 // Function to delete all form Proposals
