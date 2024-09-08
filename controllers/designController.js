@@ -1,5 +1,6 @@
 import Design from "../model/Design.model.js";
 import Logger from "../logger/Logger.js";
+import log from "node-gyp/lib/log.js";
 
 export async function addDesign(req, res) {
     try {
@@ -50,6 +51,22 @@ export const getDesigns = async (req, res) => {
     }
 };
 
+export const getDesignById = async (req, res) => {
+    try {
+        const design = await Design.findById(req.params.id).populate('developer_ids');
+        console.log(design);
+        if (design) {
+            Logger(': Response 👍 :', 'Design retrieved successfully', req.url, req.method);
+            res.status(200).json(design);
+        } else {
+            Logger(': Response 👎 :', 'Design not found', req.url, req.method);
+            res.status(404).json({ error: "Design not found" });
+        }
+    } catch (error) {
+        Logger(': Request 🙏 :', `Error occurred while fetching design: ${error.message}`, req.url, req.method);
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
+    }
+};
 
 
 export const updateDesign = async (req, res) => {

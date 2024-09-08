@@ -1,0 +1,16 @@
+# serverless.yml
+
+service: gdu-backend-apis
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: prod
+  region: ap-south-1
+
+functions:
+  app:
+    handler: server.handler
+    events:
+      - http: ANY /
+      - http: 'ANY /{proxy+}'

@@ -130,8 +130,25 @@ gameRouter.route("/addgame").post(controller.addGame);
  *         description: Not Found
  *       500:
  *         description: Server Error
+ * /api/game/homepagegames:
+ *   get:
+ *     tags:
+ *       - Game Management
+ *     summary: Get top 7 Games for homepage 
+ *     responses:
+ *       200:
+ *         description: Fetched Successfully
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Not Found
+ *       500:
+ *         description: Server Error
  */
 gameRouter.route("/getallgames").get(controller.getAllGames);
+gameRouter.route("/getgame/:id").get(controller.getGameById);
 gameRouter.route("/homepagegames").get(controller.getHomePageGames);
 
 
