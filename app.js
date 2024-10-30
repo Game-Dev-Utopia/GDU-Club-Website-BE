@@ -20,7 +20,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204, // Response status for successful OPTIONS request
+  maxAge: 86400 // Cache preflight response for 1 day
+}));
 app.use(morgan("tiny"));
 app.disable("x-powered-by");
 const port = process.env.PORT || 8080;
