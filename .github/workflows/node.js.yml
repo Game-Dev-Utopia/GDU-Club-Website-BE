@@ -20,6 +20,14 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+    # Since serverless has no way of injecting env variables without changing serverless.yml file; So, taking help of dotenv package to read the env from .env file
+    - name: Create .env
+      uses: DeveloperRic/action-create-env@v1.0.4
+      with:
+        include_env_vars: true
+      env:
+        ACTION_CREATE_ENV_ATLAS_URI: ${{ secrets.ATLAS_URI }}
+        ACTION_CREATE_ENV_JWT_SECRET: ${{ secrets.JWT_SECRET }}
     - run: npm ci
     - name: serverless deploy
       uses: serverless/github-action@v3.2
