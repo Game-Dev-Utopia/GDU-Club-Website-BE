@@ -1,121 +1,136 @@
 import { Schema, model } from "mongoose";
 
 const eventSchema = new Schema({
-    eventName: {
+  eventName: {
+    type: String,
+    required: true,
+  },
+  eventDate: {
+    type: Date,
+    required: true,
+  },
+  eventDesc: {
+    type: String,
+    required: true,
+  },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+  webUrl: {
+    type: String,
+  },
+  faq: [
+    {
+      Q: {
         type: String,
-        required: true
-    },
-    eventDate: {
-        type: Date,
-        required: true
-    },
-    eventDesc: {
+        required: true,
+      },
+      A: {
         type: String,
-        required: true
+        required: true,
+      },
     },
-    imageUrl: {
+  ],
+  videoUrl: {
+    type: String,
+  },
+  starCount: {
+    type: Number,
+    min: 0,
+    max: 5,
+  },
+  prizes: [
+    {
+      PrizeName: {
         type: String,
-        required: true
+        required: true,
+      },
+      Prize: {
+        type: String,
+        required: true,
+      },
     },
-    faq: [{
-        Q: {
-            type: String,
-            required: true
-        },
-        A: {
-            type: String,
-            required: true
-        }
-    }],
-    videoUrl: {
-        type: String
+  ],
+  registrationDeadline: {
+    type: Date,
+    required: true,
+  },
+  startsIn: {
+    type: Date,
+    required: true,
+  },
+  endsIn: {
+    type: Date,
+    required: true,
+  },
+  individualOrganizers: {
+    type: Boolean,
+    default: false,
+  },
+  organizers: [
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+      },
+      desc: {
+        type: String,
+        required: true,
+      },
+      image: {
+        type: String,
+        required: true,
+      },
     },
-    starCount: {
-        type: Number,
-        min: 0,
-        max: 5
+  ],
+  rules: [
+    {
+      type: String,
+      required: true,
     },
-    prizes: [{
-        PrizeName: {
-            type: String,
-            required: true
-        },
-        Prize: {
-            type: String,
-            required: true
-        }
-    }],
-    registrationDeadline: {
-        type: Date,
-        required: true
-    },
-    startsIn: {
-        type: Date,
-        required: true
-    },
-    endsIn: {
-        type: Date,
-        required: true
-    },
-    individualOrganizers: {
+  ],
+  winners: [
+    {
+      isTeam: {
         type: Boolean,
-        default: false
-    },
-    organizers: [{
-        name: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true
-        },
-        desc: {
-            type: String,
-            required: true
-        },
-        image: {
-            type: String,
-            required: true
-        }
-    }],
-    rules: [{
+        required: true,
+      },
+      name: {
         type: String,
-        required: true
-    }],
-    winners: [{
-        isTeam: {
-            type: Boolean,
-            required: true
-        },
+      },
+      image: {
+        type: String,
+      },
+      teamName: {
+        type: String,
+      },
+      leader: {
         name: {
-            type: String
+          type: String,
         },
         image: {
-            type: String
+          type: String,
         },
-        teamName: {
-            type: String
+      },
+      teamMembers: [
+        {
+          name: {
+            type: String,
+          },
+          image: {
+            type: String,
+          },
         },
-        leader: {
-            name: {
-                type: String
-            },
-            image: {
-                type: String
-            }
-        },
-        teamMembers: [{
-            name: {
-                type: String
-            },
-            image: {
-                type: String
-            }
-        }]
-    }]
+      ],
+    },
+  ],
 });
 
-const Event = model('Event', eventSchema);
+const Event = model("Event", eventSchema);
 
 export default Event;
