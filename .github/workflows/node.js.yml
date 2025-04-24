@@ -41,3 +41,7 @@ jobs:
         ATLAS_URI: ${{ secrets.ATLAS_URI }}
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
         PORT: ${{ secrets.PORT }}
+        DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+        FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
