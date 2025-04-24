@@ -91,7 +91,7 @@ import * as controller from '../controllers/userController.js';
  *       500:
  *         description: Server Error
  */
-userRouter.route('/register').post(controller.register);
+userRouter.route('/register').get(controller.register);
 
 
     /**
@@ -125,7 +125,14 @@ userRouter.route('/register').post(controller.register);
  *      500:
  *        description: Internal Server Error
  */
-userRouter.route('/login').post(controller.login);
+userRouter.route('/login').get(controller.login);
+
+userRouter.route('/auth/callback').get((req, res) => {
+    res.status(200).json({ msg: "Authenticated" });
+    console.log("Authenticated");
+    console.log(req.body);
+    console.log(req.params);
+});
 
 
 /** GET Methods */

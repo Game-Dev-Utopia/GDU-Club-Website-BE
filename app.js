@@ -44,6 +44,7 @@ app.use("/api/event", eventRouter)
 
 app.use("/api/hero", heroRouter);
 app.use("/api/developer", developerRouter);
+app.use("/", userRouter);
 
 swaggerDocs(app, port);
 
