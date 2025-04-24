@@ -28,6 +28,11 @@ jobs:
       env:
         ACTION_CREATE_ENV_ATLAS_URI: ${{ secrets.ATLAS_URI }}
         ACTION_CREATE_ENV_JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        ACTION_CREATE_ENV_PORT: ${{ secrets.PORT }}
+        ACTION_CREATE_ENV_DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+        ACTION_CREATE_ENV_DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+        ACTION_CREATE_ENV_DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+        ACTION_CREATE_ENV_FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
     - run: npm ci
     - name: serverless deploy
       uses: serverless/github-action@v3.2
