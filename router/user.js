@@ -127,12 +127,7 @@ userRouter.route('/register').get(controller.register);
  */
 userRouter.route('/login').get(controller.login);
 
-userRouter.route('/auth/callback').get((req, res) => {
-    res.status(200).json({ msg: "Authenticated" });
-    console.log("Authenticated");
-    console.log(req.body);
-    console.log(req.params);
-});
+userRouter.route('/logout').get(controller.logout);
 
 
 /** GET Methods */

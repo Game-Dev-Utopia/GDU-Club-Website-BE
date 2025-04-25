@@ -81,6 +81,7 @@ export async function register(req, res) {
             return;
         });
         
+        res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000, domain: process.env.FRONTEND_URL?.split("/")[2] });
         res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000 });
         res.redirect(process.env.FRONTEND_URL || "http://localhost:3000/");
 
@@ -104,6 +105,18 @@ export async function login(req, res) {
                 `https://discord.com/api/oauth2/authorize?prompt=none&client_id=${process.env.DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.DISCORD_REDIRECT_URI)}&response_type=code&scope=${encodeURIComponent("identify email guilds guilds.join guilds.members.read")}`
             )
         }
+
+        // Send user data back to the client
+        return res.redirect(process.env.FRONTEND_URL || "http://localhost:3000");
+    }
+    res.redirect(
+        `https://discord.com/api/oauth2/authorize?prompt=none&client_id=${process.env.DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.DISCORD_REDIRECT_URI)}&response_type=code&scope=${encodeURIComponent("identify email guilds guilds.join guilds.members.read")}`
+    );
+}
+
+export async function logout(req, res) {
+    if(req.cookies?.uid) {
+        res.clearCookie("uid");
 
         // Send user data back to the client
         return res.redirect(process.env.FRONTEND_URL || "http://localhost:3000");
