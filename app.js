@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import userRouter from "./router/user.js";
@@ -26,6 +27,7 @@ app.use(cors({
 }));
 app.use(morgan("tiny"));
 app.disable("x-powered-by");
+app.use(cookieParser());
 const port = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
