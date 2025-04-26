@@ -81,8 +81,8 @@ export async function register(req, res) {
             return;
         });
         
-        res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000, domain: ".gamedevutopia.in", httpOnly: true, secure: true, sameSite: "none" });
-        res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000, domain: "localhost", httpOnly: true, secure: false, sameSite: "none" });
+        res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000, domain: ".gamedevutopia.in", secure: true, sameSite: "none" });
+        res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000, domain: "localhost", secure: false, sameSite: "none" });
         res.redirect(process.env.FRONTEND_URL || "http://localhost:3000/");
 
     } catch (error) {
