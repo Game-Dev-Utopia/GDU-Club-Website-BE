@@ -116,7 +116,8 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
     if(req.cookies?.uid) {
-        res.clearCookie("uid");
+        res.clearCookie("uid", {domain: ".gamedevutopia.in", secure: true, sameSite: "none"});
+        res.clearCookie("uid", {domain: "localhost", secure: false, sameSite: "none"});
     }
     return res.redirect(process.env.FRONTEND_URL || "http://localhost:3000");
 }
