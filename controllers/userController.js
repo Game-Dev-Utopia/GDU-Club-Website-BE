@@ -98,7 +98,7 @@ export async function login(req, res) {
         const userId = decoded.userId;
 
         // Find the user in the database
-        const user = await UserModel.findById(userId);
+        const user = await UserModel.findOne({ discordId: userId });
 
         if (!user) {
             return res.redirect(
