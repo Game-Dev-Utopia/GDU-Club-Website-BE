@@ -81,7 +81,7 @@ export async function register(req, res) {
             return;
         });
         
-        res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, domain: process.env.FRONTEND_DOMAIN });
+        res.cookie("uid", JSON.stringify({token, username: user.global_name, avatar: user.profile.profile_photo}), { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, domain: (process.env.FRONTEND_DOMAIN || "http://localhost:3000").split("/")[2], secure: true, sameSite: "none" });
         res.redirect(process.env.FRONTEND_URL || "http://localhost:3000/");
 
     } catch (error) {
