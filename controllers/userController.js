@@ -2,6 +2,41 @@ import axios from "axios"; // Add this import
 import jwt from "jsonwebtoken";
 import UserModel from "../model/User.model.js"; // Adjust the path as necessary
 
+export async function isUserLoggedIn(req, res, next) {
+    let userId = null;
+    if (req.cookies?.uid) {
+        const token = JSON.parse(req.cookies.uid).token;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        userId = decoded.userId;
+        console.log(userId);
+
+    } else if ( req.get("User-Id") ){
+        console.log("Verifying from User-Id header");
+        const token = (JSON.parse(req.get("User-Id"))).token;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        userId = decoded.userId;
+        console.log(userId);
+    } else {
+        req.user = null;
+        next();
+        return;
+    }
+    
+    // Find the user in the database
+    const user = await UserModel.findOne({ discordId: userId });
+
+    if (!user) {
+        req.user = null;
+        next();
+        return;
+    }
+    console.log(user);
+
+    // Send user data back to the client
+    req.user = user;
+    next();
+}
+
 export async function register(req, res) {
     try {
         const { code } = req.query; // Discord OAuth2 authorization code
@@ -39,16 +74,11 @@ export async function register(req, res) {
         // console.log(tokenResponse.data);
         // console.log(userResponse.data);
 
-        const { id, username, email, avatar, global_name } = userResponse.data;
+        const { id, username, email, avatar, global_name, discriminator } = userResponse.data;
 
         // Check if the user already exists
         const existingUser = await UserModel.findOne({ discordId: id });
 
-        let responseStr;
-
-        if (existingUser) {
-            responseStr = { error: "User already registered" };
-        }
 
         // Create a new user
         let user = {
@@ -60,7 +90,7 @@ export async function register(req, res) {
             refreshToken: refresh_token,
             accessTokenExpiresAt: new Date(Date.now() + expires_in * 1000),
             profile: {
-                profile_photo: `https://cdn.discordapp.com/avatars/${id}/${avatar}.png`,
+                profile_photo: (avatar)? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` : `https://cdn.discordapp.com/embed/avatars/${discriminator % 5}.png`,
             },
         };
 
@@ -120,6 +150,58 @@ export async function logout(req, res) {
         res.clearCookie("uid", {domain: "localhost", secure: false, sameSite: "none"});
     }
     return res.redirect(process.env.FRONTEND_URL || "http://localhost:3000");
+}
+
+export async function getUserData(req, res) {
+    const ModalText = {};
+    try {
+        const user = req.user;
+        if (!user) {
+            return res.status(401).json({ error: "User not found" });
+        }
+        // check if user is part of the GameDevUtopia discord server
+        const guildMemberResponse = await axios.get(`https://discord.com/api/v10/users/@me/guilds/${process.env.DISCORD_GUILD_ID}/member`, {
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`
+            }
+        });
+        const guildMember = guildMemberResponse.data;
+        if (!guildMember || !guildMember.user) {
+            ModalText.displayText = "You are missing out a lot not being a member of the GameDevUtopia Discord server!";
+            ModalText.buttonText = "Join Server";
+        }
+        else {
+            ModalText.displayText = `Proud member of the GameDevUtopia from ${new Date(guildMember.joined_at).toLocaleDateString()}!`;
+            ModalText.buttonText = "Close";
+        }
+        return res.status(200).json(ModalText);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+export async function joinUserToGuild(req, res) {
+    const user = req.user;
+    if (!user) {
+        return res.status(401).json({ error: "User not found" });
+    }
+    try {
+        const response = await axios.put(`https://discord.com/api/guilds/${process.env.DISCORD_GUILD_ID}/members/${user.discordId}`, {
+            access_token: user.accessToken,
+            nick: user.global_name
+        }, {
+            headers: {
+                Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
+                "Content-Type": "application/json",
+            }
+        });
+        return res.status(200).json({ message: "User added to guild successfully", data: response.data });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 export async function getUser(req, res) {

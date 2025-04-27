@@ -129,6 +129,9 @@ userRouter.route('/login').get(controller.login);
 
 userRouter.route('/logout').get(controller.logout);
 
+userRouter.route('/discord/getUserData').get(controller.isUserLoggedIn, controller.getUserData);
+
+userRouter.route('/discord/addToGuild').get(controller.isUserLoggedIn, controller.joinUserToGuild);
 
 /** GET Methods */
     /**
