@@ -17,6 +17,7 @@ import heroRouter from "./router/hero.js";
 import developerRouter from "./router/developer.js";
 import connect from "./database/conn.js";
 dotenv.config();
+process.env.TZ = "Asia/Kolkata";
 
 const app = express();
 

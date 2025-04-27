@@ -171,7 +171,7 @@ export async function getUserData(req, res) {
             ModalText.buttonText = "Join Server";
         }
         else {
-            ModalText.displayText = `Proud member of the GameDevUtopia from ${new Date(guildMember.joined_at).toLocaleDateString()}!`;
+            ModalText.displayText = `Proud member of the GameDevUtopia from ${new Date(guildMember.joined_at).toLocaleDateString("en-gb")}!`;
             ModalText.buttonText = "Close";
         }
         return res.status(200).json(ModalText);
