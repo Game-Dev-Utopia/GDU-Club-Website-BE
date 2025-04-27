@@ -33,6 +33,8 @@ jobs:
         ACTION_CREATE_ENV_DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
         ACTION_CREATE_ENV_DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
         ACTION_CREATE_ENV_FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+        ACTION_CREATE_ENV_DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        ACTION_CREATE_ENV_DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
     - run: npm ci
     - name: serverless deploy
       uses: serverless/github-action@v3.2
@@ -49,4 +51,6 @@ jobs:
         DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
         DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
         DISCORD_REDIRECT_URI: ${{ secrets.DISCORD_REDIRECT_URI }}
+        DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+        DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
         FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
