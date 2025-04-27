@@ -163,7 +163,8 @@ export async function getUserData(req, res) {
         const guildMemberResponse = await axios.get(`https://discord.com/api/v10/users/@me/guilds/${process.env.DISCORD_GUILD_ID}/member`, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`
-            }
+            },
+            validateStatus: status => status === 200 || status === 204 || status === 404
         });
         const guildMember = guildMemberResponse.data;
         if (!guildMember || !guildMember.user) {
