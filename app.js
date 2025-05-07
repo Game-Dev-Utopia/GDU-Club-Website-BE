@@ -16,6 +16,7 @@ import eventRouter from "./router/event.js";
 import heroRouter from "./router/hero.js";
 import developerRouter from "./router/developer.js";
 import connect from "./database/conn.js";
+import BlogRouter from "./router/blog.js";
 dotenv.config();
 process.env.TZ = "Asia/Kolkata";
 
@@ -51,6 +52,7 @@ app.use("/api/event", eventRouter)
 app.use("/api/hero", heroRouter);
 app.use("/api/developer", developerRouter);
 app.use("/api/auth", userRouter);
+app.use("/api/blogs", BlogRouter);
 
 swaggerDocs(app, port);
 
