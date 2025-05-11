@@ -15,3 +15,30 @@ export async function addBulkBlogs(req, res) {
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
+
+export async function getAllBlogs(req, res) {
+    try {
+        const blogsRes = await fetch(`https://discord.com/api/v10/channels/${process.env.DISCORD_BLOG_CHANNEL_ID || "1369680725057601577"}/messages?limit=50`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bot ${process.env.DISCORD_BOT_TOKEN}`
+            }
+        });
+
+        const blogsRaw = await blogsRes.json();
+
+        if(!blogsRaw || blogsRaw.length == 0) throw new Error("Failed to load Blogs or no blogs found!");
+        const blogs = blogsRaw.map(blog => {
+            let blogMetadata = blogs?.content.split('\n');
+            return {
+                title: blogMetadata[0].split("Title: ")[1],
+                authors: blogMetadata[1].split("Authors: ")[1],
+                description: blogMetadata[2].split("Description: ")[1],
+                blogUrl : blog?.attachments[0]?.url
+            }
+        })
+    } catch (err){
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
