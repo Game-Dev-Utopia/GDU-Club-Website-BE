@@ -36,7 +36,8 @@ export async function getAllBlogs(req, res) {
                 title: blogMetadata[0]?.split("Title: ")[1],
                 authors: blogMetadata[1]?.split("Authors: ")[1],
                 description: blogMetadata[2]?.split("Description: ")[1],
-                blogUrl : blog?.attachments[0]?.url
+                blogUrl : blog?.attachments[0]?.url,
+                createdAt: blog?.timestamp
             }
         })
         res.status(200).json(blogs);
