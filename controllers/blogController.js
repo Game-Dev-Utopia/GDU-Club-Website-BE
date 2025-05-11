@@ -27,6 +27,8 @@ export async function getAllBlogs(req, res) {
 
         const blogsRaw = await blogsRes.json();
 
+        console.log("BlogsRaw: ", blogsRaw);
+
         if(!blogsRaw || blogsRaw.length == 0) throw new Error("Failed to load Blogs or no blogs found!");
         const blogs = blogsRaw.map(blog => {
             let blogMetadata = blog?.content.split('\n');
