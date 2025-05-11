@@ -1,3 +1,4 @@
+import { Readable } from 'stream';
 import BlogModel from '../model/Blog.model.js';
 
 export async function addBulkBlogs(req, res) {
@@ -42,6 +43,24 @@ export async function getAllBlogs(req, res) {
         })
         res.status(200).json(blogs);
     } catch (err){
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+export async function proxyBlogContent(req, res) {
+    try {
+        const blogUrl = req.get('Blog-Url');
+        // From the blog URL, stream the content to the client directly
+        const response = await fetch(blogUrl);
+        if (!response.ok) {
+            return res.status(response.status).json({ error: "Failed to fetch blog content" });
+        }
+        res.set('Content-Type', 'text/markdown');
+        res.set('Content-Disposition', "inline;");
+        const readableStream = Readable.fromWeb(response.body);
+        readableStream.pipe(res);
+    } catch(err){
         console.error(err);
         return res.status(500).json({ error: "Internal Server Error" });
     }
