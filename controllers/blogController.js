@@ -29,7 +29,7 @@ export async function getAllBlogs(req, res) {
 
         if(!blogsRaw || blogsRaw.length == 0) throw new Error("Failed to load Blogs or no blogs found!");
         const blogs = blogsRaw.map(blog => {
-            let blogMetadata = blogs?.content.split('\n');
+            let blogMetadata = blog?.content.split('\n');
             return {
                 title: blogMetadata[0].split("Title: ")[1],
                 authors: blogMetadata[1].split("Authors: ")[1],
@@ -37,6 +37,7 @@ export async function getAllBlogs(req, res) {
                 blogUrl : blog?.attachments[0]?.url
             }
         })
+        res.status(200).json(blogs);
     } catch (err){
         console.error(err);
         return res.status(500).json({ error: "Internal Server Error" });
