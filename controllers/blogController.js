@@ -33,9 +33,9 @@ export async function getAllBlogs(req, res) {
         const blogs = blogsRaw.map(blog => {
             let blogMetadata = blog?.content.split('\n');
             return {
-                title: blogMetadata[0].split("Title: ")[1],
-                authors: blogMetadata[1].split("Authors: ")[1],
-                description: blogMetadata[2].split("Description: ")[1],
+                title: blogMetadata[0]?.split("Title: ")[1],
+                authors: blogMetadata[1]?.split("Authors: ")[1],
+                description: blogMetadata[2]?.split("Description: ")[1],
                 blogUrl : blog?.attachments[0]?.url
             }
         })
